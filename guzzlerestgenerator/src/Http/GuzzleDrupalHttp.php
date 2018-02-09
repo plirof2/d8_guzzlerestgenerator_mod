@@ -59,27 +59,18 @@ class GuzzleDrupalHttp {
           break;
         case 'POST':
         //$res = $client->request('POST', $requestUrl, ['json' => ['foo' => 'bar']]); //ok works
-        // NOTE *** $body but be a JSON string
-        //$res = $client->request('POST', $requestUrl,json_decode( '[        {        "userId": 9,        "title": "AAAAAAAAAAtitle",        "body": "AAAAAAAAAAAAABODY aliquid\nmagnam int rem ipsum est"  	}]' ) );  // ok SEEMS to send something
+        // NOTE *** $body must be a VALID be a JSON string
+        // RELAY JSON from $body { "userId": "9", "title": "AAAAAAAAAAtitle", "body": "AAAAAAAAAAAAABODY aliquidmagnam sint", "id": 101 } //THIS IS VALID JSON
 
         //$res = $client->request('POST', $requestUrl, [ 'json' => ["userId"=> '9', "title"=> "AAAAAAAAAAtitle", "body"=> "AAAAAAAAAAAAABODY aliquidmagnam sint"] ]);  //ΟΚ Works 100%
 
-		//NOTE *** REMOVE $body PARSING FROM above          **
-		// SAMPLE CODE that accepts : "userId": '9',"title": "AAAAAAAAAAtitle", "body": "AAAAAAAAAAAAABODY aliquidmagnam sint"
-		//$string = $body; //"business_type,cafe|business_type_plural,cafes|sample_tag,couch|business_name,couch cafe";
-		$string = str_replace(array("\n", "\r" , '"',"'"), '', $body); //remove \n \r and "
-		//$string = preg_replace('~[\r\n]+~', '', $string);
-		$finalArray = array();
-		$asArr = explode( ',', $string );
-		\Drupal::logger('GUZZLE 1 ')->notice("EXPOSED body=$body , asarr=$asArr ");
-		foreach( $asArr as $val ){
-		  $tmp = explode( ':', $val );
-		  $finalArray[ trim($tmp[0]) ] = trim($tmp[1]);
-		}
+    		//NOTE *** REMOVE $body PARSING FROM above          **
+    		// SAMPLE CODE that accepts : "userId": '9',"title": "AAAAAAAAAAtitle", "body": "AAAAAAAAAAAAABODY aliquidmagnam sint"
+    		$string = $body; //"business_type,cafe|business_type_plural,cafes|sample_tag,couch|business_name,couch cafe";
+    		///$string = str_replace(array("\n", "\r" , '"',"'"), '', $body); //remove \n \r and "
+       // $string = str_replace(array("\n", "\r" ), '', $body); //remove \n \r and "  ?????????? Maybe remove this
+    		$finalArray=json_decode($string);
 
-//\Drupal::logger('GUZZLE 2')->notice("EXPOSED finalArray= $finalArray ,decodedText= $decodedText");
-
-        //$res = $client->request('POST', $requestUrl,$final_body);
         $res = $client->request('POST', $requestUrl,(array("json" => $finalArray))); //OK Works
         
 
@@ -90,7 +81,7 @@ class GuzzleDrupalHttp {
             //'body' => $body
 
           ] //,[    GuzzleHttp\RequestOptions::JSON => ['foo' => 'bar']]
-      );
+        );
           */
           break;
         case 'PUT':
