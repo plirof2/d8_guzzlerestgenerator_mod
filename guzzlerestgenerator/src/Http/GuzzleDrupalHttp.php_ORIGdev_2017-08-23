@@ -37,15 +37,12 @@ class GuzzleDrupalHttp {
       }
       
       if($requestPayloadData != ''){
-      	$body=$requestPayloadData;
         // Massage $requestPayloadData to generate $body array, ready for REST call
-        /*  ORIGINAL code
         foreach(explode("\r\n", $requestPayloadData) as $row) {
             if(preg_match('/(.*?): (.*)/', $row, $matches)) {
                 $body[$matches[1]] = $matches[2];
             }
         }
-        */ //END of  ORIGINAL code
       }else{
         $body = '';
       }
@@ -58,40 +55,11 @@ class GuzzleDrupalHttp {
           ]);
           break;
         case 'POST':
-        //$res = $client->request('POST', $requestUrl, ['json' => ['foo' => 'bar']]); //ok works
-        // NOTE *** $body but be a JSON string
-        //$res = $client->request('POST', $requestUrl,json_decode( '[        {        "userId": 9,        "title": "AAAAAAAAAAtitle",        "body": "AAAAAAAAAAAAABODY aliquid\nmagnam int rem ipsum est"  	}]' ) );  // ok SEEMS to send something
-
-        //$res = $client->request('POST', $requestUrl, [ 'json' => ["userId"=> '9', "title"=> "AAAAAAAAAAtitle", "body"=> "AAAAAAAAAAAAABODY aliquidmagnam sint"] ]);  //ΟΚ Works 100%
-
-		//NOTE *** REMOVE $body PARSING FROM above          **
-		// SAMPLE CODE that accepts : "userId": '9',"title": "AAAAAAAAAAtitle", "body": "AAAAAAAAAAAAABODY aliquidmagnam sint"
-		//$string = $body; //"business_type,cafe|business_type_plural,cafes|sample_tag,couch|business_name,couch cafe";
-		$string = str_replace(array("\n", "\r" , '"',"'"), '', $body); //remove \n \r and "
-		//$string = preg_replace('~[\r\n]+~', '', $string);
-		$finalArray = array();
-		$asArr = explode( ',', $string );
-		\Drupal::logger('GUZZLE 1 ')->notice("EXPOSED body=$body , asarr=$asArr ");
-		foreach( $asArr as $val ){
-		  $tmp = explode( ':', $val );
-		  $finalArray[ trim($tmp[0]) ] = trim($tmp[1]);
-		}
-
-//\Drupal::logger('GUZZLE 2')->notice("EXPOSED finalArray= $finalArray ,decodedText= $decodedText");
-
-        //$res = $client->request('POST', $requestUrl,$final_body);
-        $res = $client->request('POST', $requestUrl,(array("json" => $finalArray))); //OK Works
-        
-
-        /*  //ORIGINAL LINE 'body' json deprecated
           $res = $client->post($requestUrl, [
             'http_errors' => false,
             'headers' => $headers,
-            //'body' => $body
-
-          ] //,[    GuzzleHttp\RequestOptions::JSON => ['foo' => 'bar']]
-      );
-          */
+            'body' => $body
+          ]);
           break;
         case 'PUT':
           $res = $client->put($requestUrl, [
