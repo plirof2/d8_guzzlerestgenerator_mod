@@ -56,6 +56,7 @@ class GuzzleDrupalHttp {
             'http_errors' => false,
             'headers' => $headers
           ]);
+      
           break;
         case 'POST':
         //$res = $client->request('POST', $requestUrl, ['json' => ['foo' => 'bar']]); //ok works
