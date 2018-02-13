@@ -1,0 +1,665 @@
+{
+	"variables": [],
+	"info": {
+		"name": "drupal8-step_for_oauth2-didaskalia-test",
+		"_postman_id": "7ccb87f9-2160-c341-619d-8022d8cd96e5",
+		"description": "NOTE must send headers \ngrant_type: password\nclient_id: 97b62696-3186-4a05-8455-45adad2ff5d0\nclient_secret: 97b62696-3186-4a05-8455-45adad2ff5d0\nusername: admin\npassword: admin\n\n\n\n\nclient_id: copy the UUID from http://localhost/drupal8test/admin/config/services/consumer\n\n\nclient_secret : I suggest to enter as new secret the same as client_ID 97b62696-3186-4a05-8455-45adad2ff5d0 (from hereh: http://localhost/drupal8test/admin/config/services/consumer/1/edit)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "step01_ok_SESSION TOKEN X-CSRF-Token=thisToken",
+			"request": {
+				"url": "http://localhost/drupal8test/session/token",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Step02_ok_OAUTH_TOKENlocalhost/drupal8test/oauth/token/?_format=hal_json",
+			"request": {
+				"url": {
+					"raw": "http://localhost/drupal8test/oauth/token/?_format=hal_json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"oauth",
+						"token",
+						""
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "hal_json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "client_id",
+							"value": "97b62696-3186-4a05-8455-45adad2ff5d0",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "client_secret",
+							"value": "97b62696-3186-4a05-8455-45adad2ff5d0",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text",
+							"description": ""
+						}
+					]
+				},
+				"description": "NOTE MUST put your custom CLient secret in NEW SECRET in http://localhost/drupal8test/admin/config/services/consumer/1/edit.\n\nI used the ClientID also as Client_secret"
+			},
+			"response": []
+		},
+		{
+			"name": "step04_get node WIth OAUTH2 Bearer TOKEN",
+			"request": {
+				"url": {
+					"raw": "http://localhost/drupal8test/node/3?_format=hal_json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"node",
+						"3"
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "hal_json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijg0OGE0Nzg2MGE5ZTdiMzdiZDFlN2UyMGMyODZjNjE1Nzk5ZTlkMmFkZjI1ZTRjYTE5Mzc2MDdiODU5OWI4YjU4MGU2M2FjM2EyYzI3M2E1In0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiI4NDhhNDc4NjBhOWU3YjM3YmQxZTdlMjBjMjg2YzYxNTc5OWU5ZDJhZGYyNWU0Y2ExOTM3NjA3Yjg1OTliOGI1ODBlNjNhYzNhMmMyNzNhNSIsImlhdCI6MTUxODUxNjMyOCwibmJmIjoxNTE4NTE2MzI4LCJleHAiOjE1MTg1MjYzMjgsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCIsImRpYXhlaXJpc3Rpc19mcm9udGlzdGlyaW91Il19.r-fkgI011qda4z2SAeLgJw4P-gn9k8CrXyEMDvuYu0BiE5C0w9VOfNq1cNVa0YwZ6GEPXkxZTEsX20oh84Vh_L8pE_NJVMIP714TXorIrLUkpAxHmJ3eID3hNoGbtLLJ0VJCbHK_HwbGpqHFgfUtdqPWXgMaI2HelsvtVRZ4LVHLDq21WwnuKML298HxONF336Om4Dv8DmrBz2BFg93Ku420vi7n3mh5LTgugKKvHrEEzVSbY2vwzJ8BXMf2QaiOFiC6h_Tt6tezIJUwWCgVG0TglkkiIQjNvfbTj7cnj12a_NiwjNkYKbDG95QdYEd4yFN3olRfuf18Tf9c4IuOLw",
+						"description": ""
+					},
+					{
+						"key": "access_token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMzMGRiZGRmODdhOGJiOWQ5YzI5YTNhOWM2NGQ0NzI0ODkxNDc5NDc4ZWVjZjFmYjQzNTRiYTJlYmVkZjIyYWNlNjU5ZWYzYTc5OTgwZWFiIn0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiIzMzBkYmRkZjg3YThiYjlkOWMyOWEzYTljNjRkNDcyNDg5MTQ3OTQ3OGVlY2YxZmI0MzU0YmEyZWJlZGYyMmFjZTY1OWVmM2E3OTk4MGVhYiIsImlhdCI6MTUwOTk2MDExNCwibmJmIjoxNTA5OTYwMTE0LCJleHAiOjE1MDk5NzAxMTQsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCIsImRpYXhlaXJpc3Rpc19mcm9udGlzdGlyaW91Il19.Nw37xnHwr2q3p93-882ob2GoCy1xMwj0nOvJGF0Qbp59NvndELiY8gDwLInCEWTrO97g5hlwOAx7-jx_PYbfZCJ8BQY5v_RkMGSC9AQoqb7TedmWbxKYazQ1NdcvSthfOqD1wyN_mEjhQlNoeaXtoGPbbSnKAaGd9oijqHYMojizZruyRtPxgTE_D4z5DZl6yHqug-RYGrh1aWnea2ZDLQqckZ56B-L6TZXiEzpj2gEC_M92AdgPpF0UHghwWZtcI-inBNwcNm6Mvm2bRkG5Iex6FPJ-QtaRbMSSnehfVEcgUkOl5QgxqarLezoXprKGE1BKiVkcEAwf2PKqjykHUQ",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "step04b_get apirelay node WIth OAUTH2 Bearer TOKEN copy",
+			"request": {
+				"url": {
+					"raw": "http://localhost/drupal8test/node/3?_format=hal_json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"node",
+						"3"
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "hal_json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijg0OGE0Nzg2MGE5ZTdiMzdiZDFlN2UyMGMyODZjNjE1Nzk5ZTlkMmFkZjI1ZTRjYTE5Mzc2MDdiODU5OWI4YjU4MGU2M2FjM2EyYzI3M2E1In0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiI4NDhhNDc4NjBhOWU3YjM3YmQxZTdlMjBjMjg2YzYxNTc5OWU5ZDJhZGYyNWU0Y2ExOTM3NjA3Yjg1OTliOGI1ODBlNjNhYzNhMmMyNzNhNSIsImlhdCI6MTUxODUxNjMyOCwibmJmIjoxNTE4NTE2MzI4LCJleHAiOjE1MTg1MjYzMjgsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCIsImRpYXhlaXJpc3Rpc19mcm9udGlzdGlyaW91Il19.r-fkgI011qda4z2SAeLgJw4P-gn9k8CrXyEMDvuYu0BiE5C0w9VOfNq1cNVa0YwZ6GEPXkxZTEsX20oh84Vh_L8pE_NJVMIP714TXorIrLUkpAxHmJ3eID3hNoGbtLLJ0VJCbHK_HwbGpqHFgfUtdqPWXgMaI2HelsvtVRZ4LVHLDq21WwnuKML298HxONF336Om4Dv8DmrBz2BFg93Ku420vi7n3mh5LTgugKKvHrEEzVSbY2vwzJ8BXMf2QaiOFiC6h_Tt6tezIJUwWCgVG0TglkkiIQjNvfbTj7cnj12a_NiwjNkYKbDG95QdYEd4yFN3olRfuf18Tf9c4IuOLw",
+						"description": ""
+					},
+					{
+						"key": "access_token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMzMGRiZGRmODdhOGJiOWQ5YzI5YTNhOWM2NGQ0NzI0ODkxNDc5NDc4ZWVjZjFmYjQzNTRiYTJlYmVkZjIyYWNlNjU5ZWYzYTc5OTgwZWFiIn0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiIzMzBkYmRkZjg3YThiYjlkOWMyOWEzYTljNjRkNDcyNDg5MTQ3OTQ3OGVlY2YxZmI0MzU0YmEyZWJlZGYyMmFjZTY1OWVmM2E3OTk4MGVhYiIsImlhdCI6MTUwOTk2MDExNCwibmJmIjoxNTA5OTYwMTE0LCJleHAiOjE1MDk5NzAxMTQsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCIsImRpYXhlaXJpc3Rpc19mcm9udGlzdGlyaW91Il19.Nw37xnHwr2q3p93-882ob2GoCy1xMwj0nOvJGF0Qbp59NvndELiY8gDwLInCEWTrO97g5hlwOAx7-jx_PYbfZCJ8BQY5v_RkMGSC9AQoqb7TedmWbxKYazQ1NdcvSthfOqD1wyN_mEjhQlNoeaXtoGPbbSnKAaGd9oijqHYMojizZruyRtPxgTE_D4z5DZl6yHqug-RYGrh1aWnea2ZDLQqckZ56B-L6TZXiEzpj2gEC_M92AdgPpF0UHghwWZtcI-inBNwcNm6Mvm2bRkG5Iex6FPJ-QtaRbMSSnehfVEcgUkOl5QgxqarLezoXprKGE1BKiVkcEAwf2PKqjykHUQ",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "step05-POST NODE REST v001",
+			"request": {
+				"url": {
+					"raw": "http://localhost/drupal8test/entity/node/?_format=hal_json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"entity",
+						"node",
+						""
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "hal_json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/hal+json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjNhOGE2YTRmMjE2ZGQwZDdlZGUzMjA5OTU0ODc5NTQyNjcwNmY5OTgxYWMxZjNhNDkyNjE0NDk2YjY1MjlkYjBmOTllOTQzMWQ1YTM1NjRiIn0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiIzYThhNmE0ZjIxNmRkMGQ3ZWRlMzIwOTk1NDg3OTU0MjY3MDZmOTk4MWFjMWYzYTQ5MjYxNDQ5NmI2NTI5ZGIwZjk5ZTk0MzFkNWEzNTY0YiIsImlhdCI6MTUxMDEzMTEwNiwibmJmIjoxNTEwMTMxMTA2LCJleHAiOjE1MTAxNDExMDYsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCJdfQ.VRBSsBuOgtGyPG9J8cnyfLXNa0amgKltvJgA2AcZadLvotZ0MxXlDxcj4aSQ5YY1V-5X8ZqvAjWfzQFYmUZ5SWGEdFWS2xu9kc1-Gk3PRPkW6Y8Niw1nRM2S9uBVpWePrp4UQjiM48QD3vWYPP3FJsjiEMTCZmwiYs69m0zB1IQfOqW7p1CBax1TMvtlCfel9MAUd9RDraQdyeh5Xsks0Fysag5stGTLlmbZzr_DTAjpSY_Umc-667jDYWbBfjuxzM0xlqZsUq4EokPsfCpFcg_tWo2JkQCABFwSos0o_uUXIDtgKIPRQAo2NQd2mQLRKbtDtnnxWM0wlGs15e-Aew",
+						"description": ""
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "f0e3RPlrYWZ4lREtDtGbI2YcPxzkII5Bp1KVGCmRxuM",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"_links\": {\n    \"type\": {\n      \"href\": \"http://localhost/drupal8test/rest/type/node/article\"\n    }\n  },\n  \"title\": {\n    \"value\": \"Test Article 2\"\n  },\n  \"type\": {\n    \"target_id\": \"article\"\n  }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "step06 -GET didaskalia -http://localhost/drupal8test//admin/structure/didaskalia_entity/1/?_format=hal_json",
+			"request": {
+				"url": {
+					"raw": "http://localhost/drupal8test/admin/structure/didaskalia_entity/1?_format=hal_json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"admin",
+						"structure",
+						"didaskalia_entity",
+						"1"
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "hal_json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/hal+json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjNhOGE2YTRmMjE2ZGQwZDdlZGUzMjA5OTU0ODc5NTQyNjcwNmY5OTgxYWMxZjNhNDkyNjE0NDk2YjY1MjlkYjBmOTllOTQzMWQ1YTM1NjRiIn0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiIzYThhNmE0ZjIxNmRkMGQ3ZWRlMzIwOTk1NDg3OTU0MjY3MDZmOTk4MWFjMWYzYTQ5MjYxNDQ5NmI2NTI5ZGIwZjk5ZTk0MzFkNWEzNTY0YiIsImlhdCI6MTUxMDEzMTEwNiwibmJmIjoxNTEwMTMxMTA2LCJleHAiOjE1MTAxNDExMDYsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCJdfQ.VRBSsBuOgtGyPG9J8cnyfLXNa0amgKltvJgA2AcZadLvotZ0MxXlDxcj4aSQ5YY1V-5X8ZqvAjWfzQFYmUZ5SWGEdFWS2xu9kc1-Gk3PRPkW6Y8Niw1nRM2S9uBVpWePrp4UQjiM48QD3vWYPP3FJsjiEMTCZmwiYs69m0zB1IQfOqW7p1CBax1TMvtlCfel9MAUd9RDraQdyeh5Xsks0Fysag5stGTLlmbZzr_DTAjpSY_Umc-667jDYWbBfjuxzM0xlqZsUq4EokPsfCpFcg_tWo2JkQCABFwSos0o_uUXIDtgKIPRQAo2NQd2mQLRKbtDtnnxWM0wlGs15e-Aew",
+						"description": ""
+					},
+					{
+						"key": "access_token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMzMGRiZGRmODdhOGJiOWQ5YzI5YTNhOWM2NGQ0NzI0ODkxNDc5NDc4ZWVjZjFmYjQzNTRiYTJlYmVkZjIyYWNlNjU5ZWYzYTc5OTgwZWFiIn0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiIzMzBkYmRkZjg3YThiYjlkOWMyOWEzYTljNjRkNDcyNDg5MTQ3OTQ3OGVlY2YxZmI0MzU0YmEyZWJlZGYyMmFjZTY1OWVmM2E3OTk4MGVhYiIsImlhdCI6MTUwOTk2MDExNCwibmJmIjoxNTA5OTYwMTE0LCJleHAiOjE1MDk5NzAxMTQsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCIsImRpYXhlaXJpc3Rpc19mcm9udGlzdGlyaW91Il19.Nw37xnHwr2q3p93-882ob2GoCy1xMwj0nOvJGF0Qbp59NvndELiY8gDwLInCEWTrO97g5hlwOAx7-jx_PYbfZCJ8BQY5v_RkMGSC9AQoqb7TedmWbxKYazQ1NdcvSthfOqD1wyN_mEjhQlNoeaXtoGPbbSnKAaGd9oijqHYMojizZruyRtPxgTE_D4z5DZl6yHqug-RYGrh1aWnea2ZDLQqckZ56B-L6TZXiEzpj2gEC_M92AdgPpF0UHghwWZtcI-inBNwcNm6Mvm2bRkG5Iex6FPJ-QtaRbMSSnehfVEcgUkOl5QgxqarLezoXprKGE1BKiVkcEAwf2PKqjykHUQ",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "step07 POST didaskalia http://localhost/drupal8test/entity/didaskalia_entity/?_format=hal_json",
+			"request": {
+				"url": {
+					"raw": "http://localhost/drupal8test/entity/didaskalia_entity/?_format=hal_json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"entity",
+						"didaskalia_entity",
+						""
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "hal_json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/hal+json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjNhOGE2YTRmMjE2ZGQwZDdlZGUzMjA5OTU0ODc5NTQyNjcwNmY5OTgxYWMxZjNhNDkyNjE0NDk2YjY1MjlkYjBmOTllOTQzMWQ1YTM1NjRiIn0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiIzYThhNmE0ZjIxNmRkMGQ3ZWRlMzIwOTk1NDg3OTU0MjY3MDZmOTk4MWFjMWYzYTQ5MjYxNDQ5NmI2NTI5ZGIwZjk5ZTk0MzFkNWEzNTY0YiIsImlhdCI6MTUxMDEzMTEwNiwibmJmIjoxNTEwMTMxMTA2LCJleHAiOjE1MTAxNDExMDYsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCJdfQ.VRBSsBuOgtGyPG9J8cnyfLXNa0amgKltvJgA2AcZadLvotZ0MxXlDxcj4aSQ5YY1V-5X8ZqvAjWfzQFYmUZ5SWGEdFWS2xu9kc1-Gk3PRPkW6Y8Niw1nRM2S9uBVpWePrp4UQjiM48QD3vWYPP3FJsjiEMTCZmwiYs69m0zB1IQfOqW7p1CBax1TMvtlCfel9MAUd9RDraQdyeh5Xsks0Fysag5stGTLlmbZzr_DTAjpSY_Umc-667jDYWbBfjuxzM0xlqZsUq4EokPsfCpFcg_tWo2JkQCABFwSos0o_uUXIDtgKIPRQAo2NQd2mQLRKbtDtnnxWM0wlGs15e-Aew",
+						"description": ""
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "f0e3RPlrYWZ4lREtDtGbI2YcPxzkII5Bp1KVGCmRxuM",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost/drupal8test/admin/structure/didaskalia_entity/1?_format=hal_json\"\n        },\n        \"type\": {\n            \"href\": \"http://localhost/drupal8test/rest/type/didaskalia_entity/didaskalia_entity\"\n        },\n        \"http://localhost/drupal8test/rest/relation/didaskalia_entity/didaskalia_entity/user_id\": [\n            {\n                \"href\": \"http://localhost/drupal8test/user/1?_format=hal_json\",\n                \"lang\": \"en\"\n            }\n        ],\n        \"http://localhost/drupal8test/rest/relation/didaskalia_entity/didaskalia_entity/parartima_teacher_id\": [\n            {\n                \"href\": \"http://localhost/drupal8test/admin/structure/parartima_teacher_entity/1?_format=hal_json\"\n            }\n        ],\n        \"http://localhost/drupal8test/rest/relation/didaskalia_entity/didaskalia_entity/anathesi_id\": [\n            {\n                \"href\": \"http://localhost/drupal8test/admin/structure/anathesi_mathimaton_tmima/1?_format=hal_json\"\n            }\n        ],\n        \"http://localhost/drupal8test/rest/relation/didaskalia_entity/didaskalia_entity/room_id\": [\n            {\n                \"href\": \"http://localhost/drupal8test/admin/structure/room_entity/9fIq47t?_format=hal_json\"\n            }\n        ]\n    },\n    \"langcode\": [\n        {\n            \"value\": \"en\"\n        }\n    ],\n    \"_embedded\": {\n        \"http://localhost/drupal8test/rest/relation/didaskalia_entity/didaskalia_entity/user_id\": [\n            {\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost/drupal8test/user/1?_format=hal_json\"\n                    },\n                    \"type\": {\n                        \"href\": \"http://localhost/drupal8test/rest/type/user/user\"\n                    }\n                },\n                \"uuid\": [\n                    {\n                        \"value\": \"6cc8408d-0d22-45a7-9e98-482dcb4c8d7f\"\n                    }\n                ],\n                \"lang\": \"en\"\n            }\n        ],\n        \"http://localhost/drupal8test/rest/relation/didaskalia_entity/didaskalia_entity/parartima_teacher_id\": [\n            {\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost/drupal8test/admin/structure/parartima_teacher_entity/10?_format=hal_json\"\n                    },\n                    \"type\": {\n                        \"href\": \"http://localhost/drupal8test/rest/type/parartima_teacher_entity/parartima_teacher_entity\"\n                    }\n                },\n                \"uuid\": [\n                    {\n                        \"value\": \"f8c70835-7ed1-4479-a6df-fc9cbdce9764\"\n                    }\n                ]\n            }\n        ],\n        \"http://localhost/drupal8test/rest/relation/didaskalia_entity/didaskalia_entity/anathesi_id\": [\n            {\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost/drupal8test/admin/structure/anathesi_mathimaton_tmima/1?_format=hal_json\"\n                    },\n                    \"type\": {\n                        \"href\": \"http://localhost/drupal8test/rest/type/anathesi_mathimaton_tmima/anathesi_mathimaton_tmima\"\n                    }\n                },\n                \"uuid\": [\n                    {\n                        \"value\": \"244e7197-55f8-47f6-91f6-4a6f856e97e2\"\n                    }\n                ]\n            }\n        ],\n        \"http://localhost/drupal8test/rest/relation/didaskalia_entity/didaskalia_entity/room_id\": [\n            {\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost/drupal8test/admin/structure/room_entity/9fIq47t?_format=hal_json\"\n                    },\n                    \"type\": {\n                        \"href\": \"http://localhost/drupal8test/rest/type/room_entity/room_entity\"\n                    }\n                },\n                \"uuid\": [\n                    {\n                        \"value\": \"7082e58b-c69b-41ab-be8d-50eaa943b680\"\n                    }\n                ]\n            }\n        ]\n    },\n    \"name\": [\n        {\n            \"value\": \"REST 2 1111\"\n        }\n    ],\n    \"color\": [\n        {\n            \"value\": \"aaaa\"\n        }\n    ],\n    \"textcolor\": [\n        {\n            \"value\": \"aaaa\"\n        }\n    ],\n    \"duration\": [\n        {\n            \"value\": \"60\"\n        }\n    ],\n    \"rrule_json\": [\n        {\n            \"value\": \"{\\\"freq\\\": \\\"RRule.WEEKLY\\\", \\\"until\\\": \\\"52534535235\\\", \\\"dtstart\\\": \\\"54324534534\\\"}\"\n        }\n    ],\n    \"status\": [\n        {\n            \"value\": true\n        }\n    ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/drupal8test/content_view1?_format=hal_json",
+			"request": {
+				"url": {
+					"raw": "http://localhost/drupal8test/content_view1?_format=hal_json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"content_view1"
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "hal_json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMzMGRiZGRmODdhOGJiOWQ5YzI5YTNhOWM2NGQ0NzI0ODkxNDc5NDc4ZWVjZjFmYjQzNTRiYTJlYmVkZjIyYWNlNjU5ZWYzYTc5OTgwZWFiIn0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiIzMzBkYmRkZjg3YThiYjlkOWMyOWEzYTljNjRkNDcyNDg5MTQ3OTQ3OGVlY2YxZmI0MzU0YmEyZWJlZGYyMmFjZTY1OWVmM2E3OTk4MGVhYiIsImlhdCI6MTUwOTk2MDExNCwibmJmIjoxNTA5OTYwMTE0LCJleHAiOjE1MDk5NzAxMTQsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCIsImRpYXhlaXJpc3Rpc19mcm9udGlzdGlyaW91Il19.Nw37xnHwr2q3p93-882ob2GoCy1xMwj0nOvJGF0Qbp59NvndELiY8gDwLInCEWTrO97g5hlwOAx7-jx_PYbfZCJ8BQY5v_RkMGSC9AQoqb7TedmWbxKYazQ1NdcvSthfOqD1wyN_mEjhQlNoeaXtoGPbbSnKAaGd9oijqHYMojizZruyRtPxgTE_D4z5DZl6yHqug-RYGrh1aWnea2ZDLQqckZ56B-L6TZXiEzpj2gEC_M92AdgPpF0UHghwWZtcI-inBNwcNm6Mvm2bRkG5Iex6FPJ-QtaRbMSSnehfVEcgUkOl5QgxqarLezoXprKGE1BKiVkcEAwf2PKqjykHUQ",
+						"description": ""
+					},
+					{
+						"key": "access_token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMzMGRiZGRmODdhOGJiOWQ5YzI5YTNhOWM2NGQ0NzI0ODkxNDc5NDc4ZWVjZjFmYjQzNTRiYTJlYmVkZjIyYWNlNjU5ZWYzYTc5OTgwZWFiIn0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiIzMzBkYmRkZjg3YThiYjlkOWMyOWEzYTljNjRkNDcyNDg5MTQ3OTQ3OGVlY2YxZmI0MzU0YmEyZWJlZGYyMmFjZTY1OWVmM2E3OTk4MGVhYiIsImlhdCI6MTUwOTk2MDExNCwibmJmIjoxNTA5OTYwMTE0LCJleHAiOjE1MDk5NzAxMTQsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCIsImRpYXhlaXJpc3Rpc19mcm9udGlzdGlyaW91Il19.Nw37xnHwr2q3p93-882ob2GoCy1xMwj0nOvJGF0Qbp59NvndELiY8gDwLInCEWTrO97g5hlwOAx7-jx_PYbfZCJ8BQY5v_RkMGSC9AQoqb7TedmWbxKYazQ1NdcvSthfOqD1wyN_mEjhQlNoeaXtoGPbbSnKAaGd9oijqHYMojizZruyRtPxgTE_D4z5DZl6yHqug-RYGrh1aWnea2ZDLQqckZ56B-L6TZXiEzpj2gEC_M92AdgPpF0UHghwWZtcI-inBNwcNm6Mvm2bRkG5Iex6FPJ-QtaRbMSSnehfVEcgUkOl5QgxqarLezoXprKGE1BKiVkcEAwf2PKqjykHUQ",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/drupal8test//admin/structure/didaskalia_entity/1/?_format=hal_json",
+			"request": {
+				"url": {
+					"raw": "http://localhost/drupal8test/admin/structure/didaskalia_entity/1/?_format=hal_json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"admin",
+						"structure",
+						"didaskalia_entity",
+						"1",
+						""
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "hal_json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/hal+json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjI3YTJiYzhhYjU2NTUxM2FiMTJlMzE4Mzg2NGVjMDY4MTllODgxM2JhMDgyNTM2MjJhODRhZDMwNmIwY2YwNGRiMWZiNDI2MWFkN2YxMzJiIn0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiIyN2EyYmM4YWI1NjU1MTNhYjEyZTMxODM4NjRlYzA2ODE5ZTg4MTNiYTA4MjUzNjIyYTg0YWQzMDZiMGNmMDRkYjFmYjQyNjFhZDdmMTMyYiIsImlhdCI6MTUwOTk4OTI3OCwibmJmIjoxNTA5OTg5Mjc4LCJleHAiOjE1MDk5OTkyNzgsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCJdfQ.rH_lxKt-0zR99nTRn4R7isEWBe8jNu2sCUAE4yMaLjpPy650-kklfdGq8IYXLYucahSihsALPoZNhImCZt0piJ7QokV2lzKGccCi4iflsI6YjZ6U0yx7hXG4KCBjAjq13kauIki3z9UO9AQzUO6oj_SMRRiuWg1RsmuIq6HF2vZ0bJ-9LeMNIGuaYlw1fROTdsW4hZHY2jYXJ_etpqvc-i3hIwFheJpDwvKKJkmzeGzSvTzCWXVwa7zm9wbdFlw14O_HuoB6gN4MIOhCwLEC0W63YVDhrlp4OrTfr0dsQjRRJdJ9raO__0wZTMx6NdvQ9hJ_KyMCI_OM4dF8xCVe7w",
+						"description": ""
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "2oajcK165D0KGG3DrIhSmclfy_bNjSDenE6B6z4a8l8",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "step07-GET VIEW-DIDASKALIAhttp://localhost/drupal8test/view/didaskalia",
+			"request": {
+				"url": "http://localhost/drupal8test/view/didaskalia",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/hal+json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjNhOGE2YTRmMjE2ZGQwZDdlZGUzMjA5OTU0ODc5NTQyNjcwNmY5OTgxYWMxZjNhNDkyNjE0NDk2YjY1MjlkYjBmOTllOTQzMWQ1YTM1NjRiIn0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiIzYThhNmE0ZjIxNmRkMGQ3ZWRlMzIwOTk1NDg3OTU0MjY3MDZmOTk4MWFjMWYzYTQ5MjYxNDQ5NmI2NTI5ZGIwZjk5ZTk0MzFkNWEzNTY0YiIsImlhdCI6MTUxMDEzMTEwNiwibmJmIjoxNTEwMTMxMTA2LCJleHAiOjE1MTAxNDExMDYsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCJdfQ.VRBSsBuOgtGyPG9J8cnyfLXNa0amgKltvJgA2AcZadLvotZ0MxXlDxcj4aSQ5YY1V-5X8ZqvAjWfzQFYmUZ5SWGEdFWS2xu9kc1-Gk3PRPkW6Y8Niw1nRM2S9uBVpWePrp4UQjiM48QD3vWYPP3FJsjiEMTCZmwiYs69m0zB1IQfOqW7p1CBax1TMvtlCfel9MAUd9RDraQdyeh5Xsks0Fysag5stGTLlmbZzr_DTAjpSY_Umc-667jDYWbBfjuxzM0xlqZsUq4EokPsfCpFcg_tWo2JkQCABFwSos0o_uUXIDtgKIPRQAo2NQd2mQLRKbtDtnnxWM0wlGs15e-Aew",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "step08-DELETE-DIDASKALIA -ok (Must enter EXISTING number)",
+			"request": {
+				"url": {
+					"raw": "http://localhost/drupal8test/admin/structure/didaskalia_entity/4/?_format=hal_json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"admin",
+						"structure",
+						"didaskalia_entity",
+						"4",
+						""
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "hal_json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/hal+json",
+						"description": ""
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "f0e3RPlrYWZ4lREtDtGbI2YcPxzkII5Bp1KVGCmRxuM",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjNhOGE2YTRmMjE2ZGQwZDdlZGUzMjA5OTU0ODc5NTQyNjcwNmY5OTgxYWMxZjNhNDkyNjE0NDk2YjY1MjlkYjBmOTllOTQzMWQ1YTM1NjRiIn0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiIzYThhNmE0ZjIxNmRkMGQ3ZWRlMzIwOTk1NDg3OTU0MjY3MDZmOTk4MWFjMWYzYTQ5MjYxNDQ5NmI2NTI5ZGIwZjk5ZTk0MzFkNWEzNTY0YiIsImlhdCI6MTUxMDEzMTEwNiwibmJmIjoxNTEwMTMxMTA2LCJleHAiOjE1MTAxNDExMDYsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCJdfQ.VRBSsBuOgtGyPG9J8cnyfLXNa0amgKltvJgA2AcZadLvotZ0MxXlDxcj4aSQ5YY1V-5X8ZqvAjWfzQFYmUZ5SWGEdFWS2xu9kc1-Gk3PRPkW6Y8Niw1nRM2S9uBVpWePrp4UQjiM48QD3vWYPP3FJsjiEMTCZmwiYs69m0zB1IQfOqW7p1CBax1TMvtlCfel9MAUd9RDraQdyeh5Xsks0Fysag5stGTLlmbZzr_DTAjpSY_Umc-667jDYWbBfjuxzM0xlqZsUq4EokPsfCpFcg_tWo2JkQCABFwSos0o_uUXIDtgKIPRQAo2NQd2mQLRKbtDtnnxWM0wlGs15e-Aew",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "step09-GET_filtered didaskalia ?dateend=2018-01-29&datebegin=2018-01-10&_format=hal_json",
+			"request": {
+				"url": {
+					"raw": "http://localhost/drupal8test/view/didaskalia?dateend=2018-01-29&datebegin=2018-01-10&_format=hal_json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"view",
+						"didaskalia"
+					],
+					"query": [
+						{
+							"key": "dateend",
+							"value": "2018-01-29",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "datebegin",
+							"value": "2018-01-10",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "_format",
+							"value": "hal_json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/hal+json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijc4NDVhZDAyYjcyYmJlZjRmMmY5MTU5ZDA3Zjc2MjFlNDYxMzk4MDlhNTliN2E3ZWRlZjkyYmU0NWE1MTNiOTUzNTA2YzRkNmRhYjhjMmI5In0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiI3ODQ1YWQwMmI3MmJiZWY0ZjJmOTE1OWQwN2Y3NjIxZTQ2MTM5ODA5YTU5YjdhN2VkZWY5MmJlNDVhNTEzYjk1MzUwNmM0ZDZkYWI4YzJiOSIsImlhdCI6MTUxMDIyMDI5MywibmJmIjoxNTEwMjIwMjkzLCJleHAiOjE1MTAyMzAyOTMsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCJdfQ.ASWI3tmS4WtftxRFv-gvIk_G7Kxs6IXC_YSMFy0x4sSxudOBIG58qLqBKlUTXcdVt6UAwA_XK19D4A1Yub0Wxne0tBfvlI5skew6CtxD20aTK58mKf8lzoQFio29b51ymoISa4rYrb33DUMBnbdGB1P77-youVZ-11LjfPVJKwC8JScSWEOe_EzG1mAdxqZgybaTI3Aa69CUDjNRxvRlhb4RE3ylaZAi5eC4Jr68fW9_iopJ2ynRcqqbQO4fEXaRAAAUDjinK8jIIMXBGELiAjcRZTTIe8wOxO2BsH3BmLg_eOaFTFJL4-5zVyMQEip-UknlvZ_b2mm-aICHgqrvxQ",
+						"description": ""
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "gCnMt1HC0buaSdbjXtKiEhgRO_Lj37Q-PQwX3Jgxogo",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "http://localhost/drupal8test/view/didaskalia?dateend=2018-01-29&datebegin=2018-01-10&_format=hal_json"
+			},
+			"response": []
+		},
+		{
+			"name": "step10_didask_byTeacherAFM-GET_filtered didaskalia byteacher ?dateend=2018-01-29&datebegin=2018-01-10&_format=hal_json",
+			"request": {
+				"url": {
+					"raw": "http://localhost/drupal8test/view/didaskalia/byteacher?dateend=2018-01-29&datebegin=2018-01-10&teacher_afm=098456776&_format=hal_json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"view",
+						"didaskalia",
+						"byteacher"
+					],
+					"query": [
+						{
+							"key": "dateend",
+							"value": "2018-01-29",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "datebegin",
+							"value": "2018-01-10",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "teacher_afm",
+							"value": "098456776",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "_format",
+							"value": "hal_json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/hal+json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijc4NDVhZDAyYjcyYmJlZjRmMmY5MTU5ZDA3Zjc2MjFlNDYxMzk4MDlhNTliN2E3ZWRlZjkyYmU0NWE1MTNiOTUzNTA2YzRkNmRhYjhjMmI5In0.eyJhdWQiOiI5N2I2MjY5Ni0zMTg2LTRhMDUtODQ1NS00NWFkYWQyZmY1ZDAiLCJqdGkiOiI3ODQ1YWQwMmI3MmJiZWY0ZjJmOTE1OWQwN2Y3NjIxZTQ2MTM5ODA5YTU5YjdhN2VkZWY5MmJlNDVhNTEzYjk1MzUwNmM0ZDZkYWI4YzJiOSIsImlhdCI6MTUxMDIyMDI5MywibmJmIjoxNTEwMjIwMjkzLCJleHAiOjE1MTAyMzAyOTMsInN1YiI6IjEiLCJzY29wZXMiOlsiYXV0aGVudGljYXRlZCJdfQ.ASWI3tmS4WtftxRFv-gvIk_G7Kxs6IXC_YSMFy0x4sSxudOBIG58qLqBKlUTXcdVt6UAwA_XK19D4A1Yub0Wxne0tBfvlI5skew6CtxD20aTK58mKf8lzoQFio29b51ymoISa4rYrb33DUMBnbdGB1P77-youVZ-11LjfPVJKwC8JScSWEOe_EzG1mAdxqZgybaTI3Aa69CUDjNRxvRlhb4RE3ylaZAi5eC4Jr68fW9_iopJ2ynRcqqbQO4fEXaRAAAUDjinK8jIIMXBGELiAjcRZTTIe8wOxO2BsH3BmLg_eOaFTFJL4-5zVyMQEip-UknlvZ_b2mm-aICHgqrvxQ",
+						"description": ""
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "gCnMt1HC0buaSdbjXtKiEhgRO_Lj37Q-PQwX3Jgxogo",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "http://localhost/drupal8test/view/didaskalia/byteacher?dateend=2018-01-29&datebegin=2018-01-10&_format=hal_json"
+			},
+			"response": []
+		}
+	]
+}

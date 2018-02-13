@@ -9,6 +9,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Psr\Log\LoggerInterface;
 
+use Drupal\guzzlerestgenerator\Http\GuzzleDrupalHttp; // DEPENDS on guzzlerestgenerator module
+
 /**
  * Provides a resource to get view modes by entity and bundle.
  *
@@ -95,7 +97,45 @@ class GuzzlenodeRestResource extends ResourceBase {
 
       foreach ($entities as $entity) {
         //RETURN  only guzzle_rest type entities
-        if($entity->getType() == 'guzzle_rest'){$result[$entity->id()] = $entity->title->value;};
+        if($entity->getType() == 'guzzle_rest'){
+
+          //$result[$entity->id()] = $entity->title->value;
+
+              // JON NOTE : BUG at this moment it shows ONLY 1 guzzlenode (even if you have more)
+              // Retrieve node fields to perform REST request
+              $endpoint_url = $entity->get('field_guzzle_endpoint_url')->uri;
+              $request_method = $entity->get('field_guzzle_request_method')->value;
+              $raw_headers = $entity->get('field_guzzle_raw_headers')->value;
+              $payload_data = $entity->get('field_guzzle_data_payload')->value;
+
+              // Perform GuzzleDrupalHttp request
+              $check = new GuzzleDrupalHttp();
+              // Function call to retrieve cities
+              $response = $check->performRequest($endpoint_url,$request_method,$raw_headers,$payload_data);
+              $contents = (string) $response->getBody();
+              if($response->getStatusCode() == '200'){
+                if($contents != ''){
+                  //check for permission here
+                  //$result[$entity->id()]="aaaa";//$contents;
+                  print_r($contents);
+                }else{
+                  print_r('200 '.$response->getReasonPhrase());
+                }
+              }
+              else{
+                print_r($contents);
+               //$result[$entity->id()]="aaaa";//$contents;
+                echo '</br>Response Status Code: ';
+                print_r($response->getStatusCode());
+                echo '</br>Reason Phrase: ';
+                print_r($response->getReasonPhrase());
+              }
+              die();
+   
+
+
+
+        };// end of  if($node->getType() == 'guzzle_rest'){
         
       }
       $response = new ResourceResponse($result);
