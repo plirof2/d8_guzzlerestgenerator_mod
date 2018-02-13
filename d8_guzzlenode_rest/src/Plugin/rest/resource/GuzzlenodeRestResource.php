@@ -90,23 +90,31 @@ class GuzzlenodeRestResource extends ResourceBase {
     }
 
 
+
+      //$entities = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple(); //ORIG WORKED
+
       $entities = \Drupal::entityTypeManager()
         ->getStorage('node')
-        ->loadMultiple();
+        ->loadByProperties(['type' => 'guzzle_rest']); //LOAD ONLY guzzle nodes
+        //->loadMultiple();
          //$entities = \Drupal::entityTypeManager()->getStorage('external_entity_type')->loadByProperties(['type' => 'extent001']); // get specific entity JON TEST
 
+      // JON NOTE : BUG at this moment it shows ONLY 1 guzzlenode (even if you have more)  
       foreach ($entities as $entity) {
-        //RETURN  only guzzle_rest type entities
+        // $result[$entity->id()] = $entity->title->value; // OK WORKS returns all titles
+        
+
         if($entity->getType() == 'guzzle_rest'){
 
-          //$result[$entity->id()] = $entity->title->value;
+         //$result[$entity->id()] = $entity->title->value;
 
-              // JON NOTE : BUG at this moment it shows ONLY 1 guzzlenode (even if you have more)
+              
               // Retrieve node fields to perform REST request
               $endpoint_url = $entity->get('field_guzzle_endpoint_url')->uri;
               $request_method = $entity->get('field_guzzle_request_method')->value;
               $raw_headers = $entity->get('field_guzzle_raw_headers')->value;
               $payload_data = $entity->get('field_guzzle_data_payload')->value;
+              //$status = $entity->get('status')->value; //JON try to get Published status @@@@@@@@@@@@@@
 
               // Perform GuzzleDrupalHttp request
               $check = new GuzzleDrupalHttp();
@@ -116,28 +124,30 @@ class GuzzlenodeRestResource extends ResourceBase {
               if($response->getStatusCode() == '200'){
                 if($contents != ''){
                   //check for permission here
+                  $result[$entity->id()]=$contents;
+                  //$result[$entity->id()] = $entity->title->value;
                   //$result[$entity->id()]="aaaa";//$contents;
-                  print_r($contents);
+                  //print_r($contents);//ok WORKS
                 }else{
                   print_r('200 '.$response->getReasonPhrase());
                 }
               }
               else{
-                print_r($contents);
-               //$result[$entity->id()]="aaaa";//$contents;
+               // $result[$entity->id()] = $entity->title->value;
+                $result[$entity->id()]=$contents;
+                //print_r("AAAAAAAAA"+$contents);//ok WORKS
+               
                 echo '</br>Response Status Code: ';
                 print_r($response->getStatusCode());
                 echo '</br>Reason Phrase: ';
                 print_r($response->getReasonPhrase());
               }
-              die();
-   
+              //die();
 
-
-
-        };// end of  if($node->getType() == 'guzzle_rest'){
+        };// END of  if($node->getType() == 'guzzle_rest'){
         
-      }
+
+      } // END of foreach ($entities as $entity) {
       $response = new ResourceResponse($result);
       $response->addCacheableDependency($result);
       return $response;

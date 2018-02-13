@@ -46,3 +46,7 @@ The initial (default) module returns:
 }
 
 ```
+http://valuebound.com/resources/blog/create-rest-resource-for-get-method-drupal-8
+
+
+
