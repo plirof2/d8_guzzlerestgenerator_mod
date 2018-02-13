@@ -16,7 +16,7 @@ use Psr\Log\LoggerInterface;
  *   id = "guzzlenode_rest_resource",
  *   label = @Translation("Guzzlenode rest resource"),
  *   uri_paths = {
- *     "canonical" = "//api/relay"
+ *     "canonical" = "/api/relay"
  *   }
  * )
  */
@@ -87,7 +87,23 @@ class GuzzlenodeRestResource extends ResourceBase {
       throw new AccessDeniedHttpException();
     }
 
-    return new ResourceResponse("Implement REST State GET!");
+
+      $entities = \Drupal::entityTypeManager()
+        ->getStorage('node')
+        ->loadMultiple();
+         //$entities = \Drupal::entityTypeManager()->getStorage('external_entity_type')->loadByProperties(['type' => 'extent001']); // get specific entity JON TEST
+
+      foreach ($entities as $entity) {
+        //RETURN  only guzzle_rest type entities
+        if($entity->getType() == 'guzzle_rest'){$result[$entity->id()] = $entity->title->value;};
+        
+      }
+      $response = new ResourceResponse($result);
+      $response->addCacheableDependency($result);
+      return $response;
+
+
+    //return new ResourceResponse("Implement REST State GET!");
   }
 
 }
