@@ -48,5 +48,14 @@ The initial (default) module returns:
 ```
 http://valuebound.com/resources/blog/create-rest-resource-for-get-method-drupal-8
 
+### Get URL parameter of drupal REST request "canonical" = "/content/get/{id}"
+```php
+public function get() {
+  ...
+$myname = $this->currentRequest->get('myname'); // drupal.com/restapi/?myname=john
+  ...
+}  
+```
+https://drupal.stackexchange.com/questions/213184/how-i-can-add-an-optional-parameter-in-rest-api-url
 
 

@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Psr\Log\LoggerInterface;
 
 use Drupal\guzzlerestgenerator\Http\GuzzleDrupalHttp; // DEPENDS on guzzlerestgenerator module
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Provides a resource to get view modes by entity and bundle.
@@ -30,6 +31,12 @@ class GuzzlenodeRestResource extends ResourceBase {
    * @var \Drupal\Core\Session\AccountProxyInterface
    */
   protected $currentUser;
+
+  /**
+   *
+   * @var \Symfony\Component\HttpFoundation\Request
+   */
+  protected $currentRequest;
 
   /**
    * Constructs a new GuzzlenodeRestResource object.
@@ -53,10 +60,14 @@ class GuzzlenodeRestResource extends ResourceBase {
     $plugin_definition,
     array $serializer_formats,
     LoggerInterface $logger,
-    AccountProxyInterface $current_user) {
+    AccountProxyInterface $current_user,
+    Request $currentRequest //Added by Jon 180213
+    ) {
+
     parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
 
     $this->currentUser = $current_user;
+    $this->currentRequest = $currentRequest;
   }
 
   /**
@@ -69,7 +80,8 @@ class GuzzlenodeRestResource extends ResourceBase {
       $plugin_definition,
       $container->getParameter('serializer.formats'),
       $container->get('logger.factory')->get('d8_guzzlenode_rest'),
-      $container->get('current_user')
+      $container->get('current_user'),
+      $container->get('request_stack')->getCurrentRequest() //Added by Jon 180213
     );
   }
 
@@ -99,16 +111,16 @@ class GuzzlenodeRestResource extends ResourceBase {
         //->loadMultiple();
          //$entities = \Drupal::entityTypeManager()->getStorage('external_entity_type')->loadByProperties(['type' => 'extent001']); // get specific entity JON TEST
 
+      $get_node_id = $this->currentRequest->get('id1'); //get URL REST node id drupal.com/restapi/?myname=john  
       // JON NOTE : BUG at this moment it shows ONLY 1 guzzlenode (even if you have more)  
       foreach ($entities as $entity) {
         // $result[$entity->id()] = $entity->title->value; // OK WORKS returns all titles
         
+        
 
-        if($entity->getType() == 'guzzle_rest'){
+        if(($entity->getType() == 'guzzle_rest') && ( $entity->id()==$get_node_id) ){
 
          //$result[$entity->id()] = $entity->title->value;
-
-              
               // Retrieve node fields to perform REST request
               $endpoint_url = $entity->get('field_guzzle_endpoint_url')->uri;
               $request_method = $entity->get('field_guzzle_request_method')->value;
