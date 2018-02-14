@@ -136,20 +136,19 @@ class GuzzlenodeRestResource extends ResourceBase {
               if($response->getStatusCode() == '200'){
                 if($contents != ''){
                   //check for permission here
-                  ///$result[$entity->id()]=$contents; //add all instances as a ARRAY (not need this at this time OK WORKS)
-                  $result=$contents; //
-                  
-                  //print_r($contents);//ok WORKS
+                  ///$result[$entity->id()]=$contents; //add all instances as a ARRAY (not need this at this time OK WORKS) // solution #3 (escaped chars)
+                  //$result=$contents;// ok WORKS // solution #1 (escaped chars) 
+                  print_r($contents);//ok WORKS // solution #2
                 }else{
                   print_r('200 '.$response->getReasonPhrase());
                 }
               }
               else{
                // $result[$entity->id()] = $entity->title->value;
-                ///$result[$entity->id()]=$contents; //add all instances as a ARRAY (not need this at this time OK WORKS)
-                $result=$contents;
+                ///$result[$entity->id()]=$contents; //add all instances as a ARRAY (not need this at this time OK WORKS)// solution #3 (escaped chars)
+               // $result=$contents; // ok WORKS // solution #1 (escaped chars) 
                 
-                //print_r("AAAAAAAAA"+$contents);//ok WORKS
+                print_r($contents);//ok WORKS // solution #2
                
                 echo '</br>Response Status Code: ';
                 print_r($response->getStatusCode());
