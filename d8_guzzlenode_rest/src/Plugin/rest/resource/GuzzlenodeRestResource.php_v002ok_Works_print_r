@@ -19,8 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
  *   id = "guzzlenode_rest_resource",
  *   label = @Translation("Guzzlenode rest resource"),
  *   uri_paths = {
- *     "canonical" = "/api/relay/{nid}",
- *
+ *     "canonical" = "/api/relay"
  *   }
  * )
  */
@@ -38,11 +37,6 @@ class GuzzlenodeRestResource extends ResourceBase {
    * @var \Symfony\Component\HttpFoundation\Request
    */
   protected $currentRequest;
-
-
-  protected $nid=0;
-  protected $param1=0;
-  protected $param2=0;
 
   /**
    * Constructs a new GuzzlenodeRestResource object.
@@ -91,23 +85,6 @@ class GuzzlenodeRestResource extends ResourceBase {
     );
   }
 
-
-/*
-public function get($nid=0) { 
-
-
-}
-
-public function get($nid=0,$param1=0) { 
-
-}
-
-public function get() { 
-  echo '{message: invalid # of paremters DEBUG msg}';
-
-}
-
-*/
   /**
    * Responds to GET requests.
    *
@@ -116,14 +93,15 @@ public function get() {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  //public function get() { //ORIGINAL
-  public function get($nid=0) {    
+  public function get() {
 
     // You must to implement the logic of your REST Resource here.
     // Use current user after pass authentication to validate access.
     if (!$this->currentUser->hasPermission('access content')) {
       throw new AccessDeniedHttpException();
     }
+
+
 
       //$entities = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple(); //ORIG WORKED
 
@@ -133,27 +111,14 @@ public function get() {
         //->loadMultiple();
          //$entities = \Drupal::entityTypeManager()->getStorage('external_entity_type')->loadByProperties(['type' => 'extent001']); // get specific entity JON TEST
 
-
-      //$get_node_id = $this->currentRequest->get('id1'); //get URL REST node id drupal.com/restapi/?myname=john  
-      $get_param1 = $this->currentRequest->get('param1'); //get URL REST node id drupal.com/restapi/?myname=john  
-      $get_param2 = $this->currentRequest->get('param2'); //get URL REST node id drupal.com/restapi/?myname=john  
-      //$node_id_from_arg = $nid;
-      //$node_id_from_alias=\Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid); //GET path alias from node_ideg drupal.com/restapi/myalbum
-      //Todo Do some chech if $nid is number
-      $node_id_from_alias="0";
-      //if ($nid!=0) 
-      $node_id_from_alias=\Drupal::service('path.alias_manager')->getPathByAlias('/'.$nid); //GET node_id from path alias drupal.com/restapi/myalbum
-      $node_id_from_alias=str_replace("/node/", "", $node_id_from_alias);
-
-
-      \Drupal::logger('DEBUG guzzlenode_rest')->notice("PARAMS: nid=$nid ,node_id_from_alias = $node_id_from_alias , param1=$get_param1, param2=$get_param2  "); //DEBUG
-
+      $get_node_id = $this->currentRequest->get('id1'); //get URL REST node id drupal.com/restapi/?myname=john  
       // JON NOTE : BUG at this moment it shows ONLY 1 guzzlenode (even if you have more)  
       foreach ($entities as $entity) {
         // $result[$entity->id()] = $entity->title->value; // OK WORKS returns all titles
         
-        //if(($entity->getType() == 'guzzle_rest') && ( $entity->id()==$get_node_id) ){  //ok works Example with URL like drupal.com/restapi/?myname=john
-      if( ( $entity->id()==$nid) || ( $entity->id()==$node_id_from_alias) ){   // test URLs like drupal.com/restapi/4 or drupal.com/restapi/myalbum
+        
+
+        if(($entity->getType() == 'guzzle_rest') && ( $entity->id()==$get_node_id) ){
 
          //$result[$entity->id()] = $entity->title->value;
               // Retrieve node fields to perform REST request
@@ -163,7 +128,6 @@ public function get() {
               $payload_data = $entity->get('field_guzzle_data_payload')->value;
               //$status = $entity->get('status')->value; //JON try to get Published status @@@@@@@@@@@@@@
 
-              
               // Perform GuzzleDrupalHttp request
               $check = new GuzzleDrupalHttp();
               // Function call to retrieve cities
@@ -191,9 +155,9 @@ public function get() {
                 echo '</br>Reason Phrase: ';
                 print_r($response->getReasonPhrase());
               }
-              die();  // ### NOTE: This assumes that we only want 1 guzzlenode entity each time (this mshould be correct - solution #3 will not work with die() )
+              //die();
 
-      };// END of  if($node->getType() == 'guzzle_rest'){
+        };// END of  if($node->getType() == 'guzzle_rest'){
         
 
       } // END of foreach ($entities as $entity) {
