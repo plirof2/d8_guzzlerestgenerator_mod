@@ -164,6 +164,15 @@ public function get() {
               //$status = $entity->get('status')->value; //JON try to get Published status @@@@@@@@@@@@@@
 
               
+              if (isset($get_param1)){
+                $endpoint_url=$endpoint_url.'/'.$get_param1; // ******** Might need to sanitaze
+                if (isset($get_param2)){
+                  $endpoint_url=$endpoint_url.'/'.$get_param2; // ******** Might need to sanitaze
+                }
+
+              }// END of if (isset($get_param1)){
+              \Drupal::logger('DEBUG guzzlenode_rest URI')->notice(" endpoint_url=$endpoint_url ");
+
               // Perform GuzzleDrupalHttp request
               $check = new GuzzleDrupalHttp();
               // Function call to retrieve cities
