@@ -40,9 +40,9 @@ class GuzzlenodeRestResource extends ResourceBase {
   protected $currentRequest;
 
 
-  protected $nid=0;
-  protected $param1=0;
-  protected $param2=0;
+  //protected $nid=0;
+  //protected $arg1=0;
+  //protected $arg2=0;
 
   /**
    * Constructs a new GuzzlenodeRestResource object.
@@ -92,22 +92,6 @@ class GuzzlenodeRestResource extends ResourceBase {
   }
 
 
-/*
-public function get($nid=0) { 
-
-
-}
-
-public function get($nid=0,$param1=0) { 
-
-}
-
-public function get() { 
-  echo '{message: invalid # of paremters DEBUG msg}';
-
-}
-
-*/
   /**
    * Responds to GET requests.
    *
@@ -135,8 +119,14 @@ public function get() {
 
 
       //$get_node_id = $this->currentRequest->get('id1'); //get URL REST node id drupal.com/restapi/?myname=john  
-      $get_param1 = $this->currentRequest->get('param1'); //get URL REST node id drupal.com/restapi/?myname=john  
-      $get_param2 = $this->currentRequest->get('param2'); //get URL REST node id drupal.com/restapi/?myname=john  
+      /*  GET patameters NOT implemented yet (maybe I need to define $param1_value , $param1_name in drupal URL)
+          // parameters are SEND to the  external request URLs as GET : http://externalapi.com?param1=hello&param2=world
+          $get_param1 = $this->currentRequest->get('param1'); //get URL REST node id drupal.com/restapi/?myname=john  
+          $get_param2 = $this->currentRequest->get('param2'); //get URL REST node id drupal.com/restapi/?myname=john  
+      */
+      // Arguments are SEND to the client in this format : http://externalapi.com/arg1/arg2
+      $get_arg1 = $this->currentRequest->get('arg1'); //get URL REST node id drupal.com/restapi/?myname=john  
+      $get_arg2 = $this->currentRequest->get('arg2'); //get URL REST node id drupal.com/restapi/?myname=john  
       //$node_id_from_arg = $nid;
       //$node_id_from_alias=\Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid); //GET path alias from node_ideg drupal.com/restapi/myalbum
       //Todo Do some chech if $nid is number
@@ -146,7 +136,7 @@ public function get() {
       $node_id_from_alias=str_replace("/node/", "", $node_id_from_alias);
 
 
-      \Drupal::logger('DEBUG guzzlenode_rest')->notice("PARAMS: nid=$nid ,node_id_from_alias = $node_id_from_alias , param1=$get_param1, param2=$get_param2  "); //DEBUG
+      \Drupal::logger('DEBUG guzzlenode_rest')->notice("Args: nid=$nid ,node_id_from_alias = $node_id_from_alias , arg1=$get_arg1, arg2=$get_arg2  "); //DEBUG
 
       // JON NOTE : BUG at this moment it shows ONLY 1 guzzlenode (even if you have more)  
       foreach ($entities as $entity) {
@@ -163,14 +153,13 @@ public function get() {
               $payload_data = $entity->get('field_guzzle_data_payload')->value;
               //$status = $entity->get('status')->value; //JON try to get Published status @@@@@@@@@@@@@@
 
-              
-              if (isset($get_param1)){
-                $endpoint_url=$endpoint_url.'/'.$get_param1; // ******** Might need to sanitaze
-                if (isset($get_param2)){
-                  $endpoint_url=$endpoint_url.'/'.$get_param2; // ******** Might need to sanitaze
+              // ARGUMENTS
+              if (isset($get_arg1)){
+                $endpoint_url=$endpoint_url.'/'.$get_arg1; // ******** Might need to sanitaze
+                if (isset($get_arg2)){
+                  $endpoint_url=$endpoint_url.'/'.$get_arg2; // ******** Might need to sanitaze
                 }
-
-              }// END of if (isset($get_param1)){
+              }// END of if (isset($get_arg1)){
               \Drupal::logger('DEBUG guzzlenode_rest URI')->notice(" endpoint_url=$endpoint_url ");
 
               // Perform GuzzleDrupalHttp request
