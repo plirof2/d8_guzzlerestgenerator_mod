@@ -121,8 +121,10 @@ class GuzzlenodeRestResource extends ResourceBase {
       //$get_node_id = $this->currentRequest->get('id1'); //get URL REST node id drupal.com/restapi/?myname=john  
       /*  GET patameters NOT implemented yet (maybe I need to define $param1_value , $param1_name in drupal URL)
           // parameters are SEND to the  external request URLs as GET : http://externalapi.com?param1=hello&param2=world
-          $get_param1 = $this->currentRequest->get('param1'); //get URL REST node id drupal.com/restapi/?myname=john  
-          $get_param2 = $this->currentRequest->get('param2'); //get URL REST node id drupal.com/restapi/?myname=john  
+          $get_param1_name = $this->currentRequest->get('param1_name'); //get URL REST node id drupal.com/restapi/?myname=john  
+          $get_param2_name = $this->currentRequest->get('param2_name'); //get URL REST node id drupal.com/restapi/?myname=john
+          $get_param1_value = $this->currentRequest->get('param1_value'); //get URL REST node id drupal.com/restapi/?myname=john  
+          $get_param2_value = $this->currentRequest->get('param2_value'); //get URL REST node id drupal.com/restapi/?myname=john              
       */
       // Arguments are SEND to the client in this format : http://externalapi.com/arg1/arg2
       $get_arg1 = $this->currentRequest->get('arg1'); //get URL REST node id drupal.com/restapi/?myname=john  
@@ -160,6 +162,27 @@ class GuzzlenodeRestResource extends ResourceBase {
                   $endpoint_url=$endpoint_url.'/'.$get_arg2; // ******** Might need to sanitaze
                 }
               }// END of if (isset($get_arg1)){
+
+/*            ok GET type post is implemented but disabled
+              // params  (might need to sanitize)
+              if (isset($get_param1_name) && isset($get_param1_value) ){
+                $get_external_request_array = array(($get_param1_name => $get_param1_value);
+                if (isset($get_param2_name) && isset($get_param2_value) ){
+                  $get_external_request_array[$get_param2_name]= $get_param2_value;
+                }
+                $get_tail=http_build_query($get_external_request_array);
+
+                $pos = strpos($endpoint_url, '?'); //check if our external API URL already contains '?' Note: This check might NOT be needed
+                  // Note our use of ===.  Simply == would not work as expected
+                  // because the position of 'a' was the 0th (first) character.
+                if ($pos === false) { 
+                      $endpoint_url=$endpoint_url.'?'.$get_tail;
+                  } else {
+                      $endpoint_url=$endpoint_url.'&'.$get_tail;
+                }
+              }// END of  if (isset($get_param1_name) && isset($get_param1_value) ){       
+*/
+
               \Drupal::logger('DEBUG guzzlenode_rest URI')->notice(" endpoint_url=$endpoint_url ");
 
               // Perform GuzzleDrupalHttp request
