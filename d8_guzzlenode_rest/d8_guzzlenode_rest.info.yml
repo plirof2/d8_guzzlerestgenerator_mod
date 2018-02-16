@@ -3,6 +3,6 @@ type: module
 description: D8 add REST exports to guzzlerestgenerator module . Example Url is  http://example/myurlalias?_format=json&id1=3&param1=hello&param2=bye this will call external REST  restpoint.com/hello/bye
 core: 8.x
 package: Custom
-version: '8.x-0.6jon-20180216b'
+version: '8.x-0.7jon-20180216c'
 dependencies:
 - guzzlerestgenerator

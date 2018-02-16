@@ -1,0 +1,21 @@
+#custom field -for defining GUZZLENODE ACCESS per role
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_guzzlenode_role_api_access
+    - node.type.guzzle_rest
+id: node.guzzle_rest.field_guzzlenode_role_api_access
+field_name: field_guzzlenode_role_api_access
+entity_type: node
+bundle: guzzle_rest
+label: guzzlenode_role_api_access
+description: 'Grant access to THIS guzzlenode to the following roles : '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user_role'
+  handler_settings: {  }
+field_type: entity_reference

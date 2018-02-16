@@ -1,0 +1,52 @@
+# core.entity_view_display.node.guzzle_rest.default.yml 
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.guzzle_rest.body
+    - field.field.node.guzzle_rest.field_guzzle_data_payload
+    - field.field.node.guzzle_rest.field_guzzle_endpoint_url
+    - field.field.node.guzzle_rest.field_guzzle_raw_headers
+    - field.field.node.guzzle_rest.field_guzzle_request_method
+    - field.field.node.guzzle_rest.field_guzzlenode_role_api_access
+    - field.field.node.guzzle_rest.field_guzzlenode_user_api_access
+    - node.type.guzzle_rest
+  module:
+    - text
+    - user
+id: node.guzzle_rest.default
+targetEntityType: node
+bundle: guzzle_rest
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_guzzlenode_role_api_access:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_guzzlenode_user_api_access:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_guzzle_data_payload: true
+  field_guzzle_endpoint_url: true
+  field_guzzle_raw_headers: true
+  field_guzzle_request_method: true

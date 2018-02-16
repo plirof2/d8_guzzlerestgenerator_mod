@@ -33,8 +33,7 @@ function d8_guzzlenode_rest_form_alter(&$form, \Drupal\Core\Form\FormStateInterf
           'settings' => ['link_to_entity' => 'false'],
       ]*/
     )->save();       
-      
-//      \Drupal::logger('DEBUG d8_guzzlenode_rest')->notice("jon CUSTOM entity_form_display   "); //DEBUG   
+      \Drupal::logger('DEBUG d8_guzzlenode_rest')->notice("jon CUSTOM entity_form_display   "); //DEBUG   
 
 } // END of function d8_guzzlenode_rest_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
 
