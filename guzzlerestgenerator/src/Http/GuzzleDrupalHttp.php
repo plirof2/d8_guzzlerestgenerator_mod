@@ -30,12 +30,20 @@ class GuzzleDrupalHttp {
     try {
       
       // Massage $requestHeaders to generate $headers array, ready for REST call
-      foreach(explode("\r\n", $requestHeaders) as $row) {
+      $requestHeaders = preg_replace(array('/\n/', '/\r/'), '#PH#', $requestHeaders);
+      //foreach(explode("\r\n", $requestHeaders) as $row) {
+      foreach(explode('#PH#', $requestHeaders) as $row) { 
+         $matches= explode(':', $row);
+         $headers[$matches[0]] = $matches[1];
+          /*
           if(preg_match('/(.*?): (.*)/', $row, $matches)) {
-              $headers[$matches[1]] = $matches[2];
-          }
+              $headers[$matches[0]] = $matches[1];
+
+          } */
+          \Drupal::logger('HEADERS got ')->notice("$matches[1]=$matches[2] ,AAAAAAAAAAAA row=$row  , requestHeaders=$requestHeaders"); 
       }
       
+
       if($requestPayloadData != ''){
       	$body=$requestPayloadData;
         // Massage $requestPayloadData to generate $body array, ready for REST call

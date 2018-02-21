@@ -129,6 +129,7 @@ class GuzzlenodeRestResource extends ResourceBase {
       // Arguments are SEND to the client in this format : http://externalapi.com/arg1/arg2
       $get_arg1 = $this->currentRequest->get('arg1'); //get URL REST node id drupal.com/restapi/?myname=john  
       $get_arg2 = $this->currentRequest->get('arg2'); //get URL REST node id drupal.com/restapi/?myname=john  
+      $get_relay_headers = $this->currentRequest->get('relay_headers'); //get URL REST relay headers to the next request ? (this is used for requesting a drupal api FROM INSIDE drupal API - kind like subreqiests)
       //$node_id_from_arg = $nid;
       //$node_id_from_alias=\Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid); //GET path alias from node_ideg drupal.com/restapi/myalbum
       //Todo Do some chech if $nid is number
@@ -138,7 +139,7 @@ class GuzzlenodeRestResource extends ResourceBase {
       $node_id_from_alias=str_replace("/node/", "", $node_id_from_alias);
 
 
-      \Drupal::logger('DEBUG guzzlenode_rest')->notice("Args: nid=$nid ,node_id_from_alias = $node_id_from_alias , arg1=$get_arg1, arg2=$get_arg2  "); //DEBUG
+      \Drupal::logger('DEBUG guzzlenode_rest')->notice("Args: nid=$nid ,node_id_from_alias = $node_id_from_alias , arg1=$get_arg1, arg2=$get_arg2 ,get_relay_headers=$get_relay_headers "); //DEBUG
 
       // JON NOTE : BUG at this moment it shows ONLY 1 guzzlenode (even if you have more)  
       foreach ($entities as $entity) {
@@ -163,6 +164,19 @@ class GuzzlenodeRestResource extends ResourceBase {
                 }
               }// END of if (isset($get_arg1)){
 
+              // Pass headers to the next request (used for internal subrequests -mainly for authentication)
+              	
+              if ($get_relay_headers=='yes'){
+              	//\Drupal::logger('raw_headers BEFORE DEBUG guzzlenode_rest URI')->notice("raw_headers=$raw_headers");
+              	//Relay Authorization Header... NOTE to NOT overwrite ORiginal
+              	$currentRequestAuthorizationHeader=$this->currentRequest->headers->get( 'Authorization' );
+              	if ($currentRequestAuthorizationHeader!=null) {
+              		$raw_headers=$raw_headers."\r\n".'Authorization:'.$currentRequestAuthorizationHeader;
+              		//\Drupal::logger('raw_headers AFTER DEBUG guzzlenode_rest URI')->notice("raw_headers=$raw_headers");	
+              	}
+
+              } // END of if ($get_relay_headers=='yes'){
+
 /*            ok GET type post is implemented but disabled
               // params  (might need to sanitize)
               if (isset($get_param1_name) && isset($get_param1_value) ){
@@ -183,7 +197,7 @@ class GuzzlenodeRestResource extends ResourceBase {
               }// END of  if (isset($get_param1_name) && isset($get_param1_value) ){       
 */
 
-              \Drupal::logger('DEBUG guzzlenode_rest URI')->notice(" endpoint_url=$endpoint_url ");
+              \Drupal::logger('DEBUG guzzlenode_rest URI')->notice(" endpoint_url=$endpoint_url ,raw_headers=$raw_headers");
 
               // Perform GuzzleDrupalHttp request
               $check = new GuzzleDrupalHttp();
