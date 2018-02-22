@@ -34,13 +34,13 @@ class GuzzleDrupalHttp {
       //foreach(explode("\r\n", $requestHeaders) as $row) {
       foreach(explode('#PH#', $requestHeaders) as $row) { 
          $matches= explode(':', $row);
-         $headers[$matches[0]] = $matches[1];
+         if($matches[0]!=null) $headers[$matches[0]] = $matches[1];  //jon 180222a
           /*
           if(preg_match('/(.*?): (.*)/', $row, $matches)) {
               $headers[$matches[0]] = $matches[1];
 
           } */
-          \Drupal::logger('HEADERS got ')->notice("$matches[1]=$matches[2] ,AAAAAAAAAAAA row=$row  , requestHeaders=$requestHeaders"); 
+          if($matches[0]!=null) \Drupal::logger('HEADERS got ')->notice("$matches[0]=$matches[1] ,AAAAAAAAAAAA row=$row  , requestHeaders=$requestHeaders"); 
       }
       
 

@@ -118,17 +118,6 @@ class GuzzlenodeRestResource extends ResourceBase {
          //$entities = \Drupal::entityTypeManager()->getStorage('external_entity_type')->loadByProperties(['type' => 'extent001']); // get specific entity JON TEST
 
 
-       /*
-      // Params note (for URL like drupal.com?params[hello]=geiasou&params[name]=George :        
-		foreach ($idArray as $index => $avPair)
-		{
-		  list($ignore, $value) = explode("=", $avPair);
-		  $id[$index] = $value;
-		}
-
-       */
-
-
       //$get_node_id = $this->currentRequest->get('id1'); //get URL REST node id drupal.com/restapi/?myname=john  
       /*  GET patameters NOT implemented yet (maybe I need to define $param1_value , $param1_name in drupal URL)
           // parameters are SEND to the  external request URLs as GET : http://externalapi.com?param1=hello&param2=world
@@ -180,7 +169,6 @@ class GuzzlenodeRestResource extends ResourceBase {
               if ($get_relay_headers=='yes'){
               	//\Drupal::logger('raw_headers BEFORE DEBUG guzzlenode_rest URI')->notice("raw_headers=$raw_headers");
               	//Relay Authorization Header... NOTE to NOT overwrite ORiginal
-              	//ToDO: ralay ALL headers to next request @@@@
               	$currentRequestAuthorizationHeader=$this->currentRequest->headers->get( 'Authorization' );
               	if ($currentRequestAuthorizationHeader!=null) {
               		$raw_headers=$raw_headers."\r\n".'Authorization:'.$currentRequestAuthorizationHeader;
