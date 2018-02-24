@@ -220,8 +220,8 @@ class GuzzlenodeRestResource extends ResourceBase {
                 if($contents != ''){
                   //check for permission here
                   ///$result[$entity->id()]=$contents; //add all instances as a ARRAY (not need this at this time OK WORKS) // solution #3 (escaped chars)
-                  $result=$contents;// ok WORKS // solution #1 (escaped chars) 
-                  //print_r($contents);//ok WORKS // solution #2
+                  //$result=$contents;// ok WORKS // solution #1 (escaped chars) 
+                  print_r($contents);//ok WORKS // solution #2
                 }else{
                   print_r('200 '.$response->getReasonPhrase());
                 }
@@ -229,9 +229,9 @@ class GuzzlenodeRestResource extends ResourceBase {
               else{
                // $result[$entity->id()] = $entity->title->value;
                 ///$result[$entity->id()]=$contents; //add all instances as a ARRAY (not need this at this time OK WORKS)// solution #3 (escaped chars)
-                $result=$contents; // ok WORKS // solution #1 (escaped chars) 
+               // $result=$contents; // ok WORKS // solution #1 (escaped chars) 
                 
-                //print_r($contents);//ok WORKS // solution #2
+                print_r($contents);//ok WORKS // solution #2
                
                 echo '</br>Response Status Code: ';
                 print_r($response->getStatusCode());
@@ -244,8 +244,6 @@ class GuzzlenodeRestResource extends ResourceBase {
         
 
       } // END of foreach ($entities as $entity) {
-
-      $result=json_decode($result, true); //added by Jon 180224 for clean responces
       $response = new ResourceResponse($result);
       $response->addCacheableDependency($result);
       return $response;
