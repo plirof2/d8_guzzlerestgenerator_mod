@@ -238,7 +238,7 @@ class GuzzlenodeRestResource extends ResourceBase {
                 echo '</br>Reason Phrase: ';
                 print_r($response->getReasonPhrase());
               }
-              die();  // ### NOTE: This assumes that we only want 1 guzzlenode entity each time (this mshould be correct - solution #3 will not work with die() )
+              //die();  // ### NOTE: This assumes that we only want 1 guzzlenode entity each time (this mshould be correct - solution #3 will not work with die() )
 
       };// END of  if($node->getType() == 'guzzle_rest'){
         
