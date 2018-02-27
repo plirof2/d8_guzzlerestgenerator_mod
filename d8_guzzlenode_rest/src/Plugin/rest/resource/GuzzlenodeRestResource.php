@@ -292,4 +292,15 @@ class GuzzlenodeRestResource extends ResourceBase {
 		return false;
   } //end of function is_in_subarray($val, $entity_get_values){
 
+  protected function is_in_subarray2($val, $entity_get_values){
+		$entity_get_values=array_filter($entity_get_values);
+		if(empty($entity_get_values)) return false;
+		$encoded=json_encode($entity_get_values,true); //[{"target_id":3714},{"target_id":1114},{"target_id":1082}]
+		$exploded = preg_split( '/(},{"target_id":|{"target_id":|}]|\[)| /', $encoded );
+		if (in_array('1114', $exploded,true))return true;
+		return false;
+  } //end of function is_in_subarray($val, $entity_get_values){
+
+
+
 }
