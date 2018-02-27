@@ -165,7 +165,11 @@ class GuzzlenodeRestResource extends ResourceBase {
               $request_method = $entity->get('field_guzzle_request_method')->value;
               $raw_headers = $entity->get('field_guzzle_raw_headers')->value;
               $payload_data = $entity->get('field_guzzle_data_payload')->value;
+              $guzzlenode_user_api_access = $entity->get('field_guzzlenode_user_api_access')->getValue();
               //$status = $entity->get('status')->value; //JON try to get Published status @@@@@@@@@@@@@@
+              //\Drupal::logger('GuzzleNodeRestResource 1')->notice("guzzlenode_user_api_access=".json_decode($guzzlenode_user_api_access,true));	
+              \Drupal::logger('GuzzleNodeRestResource USER_API_ACCESS')->notice("current user=".json_encode($this->currentUser->id())."  ||| guzzlenode_user_api_access=".json_encode($guzzlenode_user_api_access,true));	
+
 
               // ARGUMENTS
               if (isset($get_arg1)){
