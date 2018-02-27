@@ -10,7 +10,7 @@ field_name: field_guzzlenode_user_api_access
 entity_type: node
 bundle: guzzle_rest
 label: guzzlenode_user_api_access
-description: 'Grant access to THIS guzzlenode to the following users '
+description: 'ALSO Grant access to THIS guzzlenode API to the users defined here'
 required: false
 translatable: false
 default_value: {  }
