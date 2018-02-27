@@ -178,7 +178,7 @@ class GuzzlenodeRestResource extends ResourceBase {
     		 if (!(
     		 	($this->is_in_subarray($this->currentUser->id(),  $guzzlenode_user_api_access)) 
     		 	|| ($this->currentUser->id()=="1")
-    		 	//|| ($this->is_in_subarray($current_user_roles,  $guzzlenode_role_api_access)) 
+    		 	|| ($this->is_in_subarray2($current_user_roles,  $guzzlenode_role_api_access)) 
     			))
     		 {
     		 	\Drupal::logger('GuzzleNodeRestResource 1')->notice("AAAAAAAAAAa USER NOT ALLOWED");
@@ -293,11 +293,16 @@ class GuzzlenodeRestResource extends ResourceBase {
   } //end of function is_in_subarray($val, $entity_get_values){
 
   protected function is_in_subarray2($val, $entity_get_values){
+  		
 		$entity_get_values=array_filter($entity_get_values);
 		if(empty($entity_get_values)) return false;
 		$encoded=json_encode($entity_get_values,true); //[{"target_id":3714},{"target_id":1114},{"target_id":1082}]
-		$exploded = preg_split( '/(},{"target_id":|{"target_id":|}]|\[)| /', $encoded );
-		if (in_array('1114', $exploded,true))return true;
+		$exploded = preg_split( '/(},{"target_id":|{"target_id":|}]|\[|\")| /', $encoded );
+		//var_dump(array_intersect($val, $exploded));
+		\Drupal::logger('is_in_subarray2')->notice("val encoded=".json_encode($val,true)." , encoded=$encoded  || exploded =".json_encode($exploded,true) );	
+		if (array_intersect($val, $exploded)) \Drupal::logger('INTERSECT is_in_subarray2 check OK')->notice("val=".json_encode($val,true)." IS INSIDE encoded=$encoded  ||");
+		//if (in_array($val, $exploded,true)) return true;
+		if (array_intersect($val, $exploded)) return true;
 		return false;
   } //end of function is_in_subarray($val, $entity_get_values){
 
