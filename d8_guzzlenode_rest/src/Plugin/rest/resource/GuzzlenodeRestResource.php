@@ -332,7 +332,7 @@ class GuzzlenodeRestResource extends ResourceBase {
             ),
         );
     */
-        $response= new ResourceResponse(array (0=>'hello',$data));
+        $response= new ResourceResponse(array (0=>"hello POST nid=$nid",$data));
         return $response;
         return (new ResourceResponse($response))->addCacheableDependency($build);
     }
@@ -359,7 +359,7 @@ class GuzzlenodeRestResource extends ResourceBase {
             ),
         );
     */
-        $response= new ResourceResponse(array (0=>'hello',$data));
+        $response= new ResourceResponse(array (0=>"hello PATCH nid=$nid",$data));
         return $response;
         return (new ResourceResponse($response))->addCacheableDependency($build);
     }
