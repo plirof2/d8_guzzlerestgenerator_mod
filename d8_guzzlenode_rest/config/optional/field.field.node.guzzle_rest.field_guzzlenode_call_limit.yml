@@ -1,0 +1,25 @@
+uuid: a78a56b8-f878-49e9-b1e8-381aafa53c1e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_guzzlenode_call_limit
+    - node.type.guzzle_rest
+id: node.guzzle_rest.field_guzzlenode_call_limit
+field_name: field_guzzlenode_call_limit
+entity_type: node
+bundle: guzzle_rest
+label: 'Call limit for this  guzzlenode '
+description: 'How many times should we allow this REST api to be called'
+required: false
+translatable: false
+default_value:
+  -
+    value: 100
+default_value_callback: ''
+settings:
+  min: 0
+  max: 1000
+  prefix: ''
+  suffix: ''
+field_type: integer

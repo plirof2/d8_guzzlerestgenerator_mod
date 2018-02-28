@@ -1,0 +1,23 @@
+uuid: 918d6513-af67-4d49-86a2-33e80f900ead
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_guzzlenode_allow_headers_f
+    - node.type.guzzle_rest
+id: node.guzzle_rest.field_guzzlenode_allow_headers_f
+field_name: field_guzzlenode_allow_headers_f
+entity_type: node
+bundle: guzzle_rest
+label: 'Allow guzzlenode headers forwarding'
+description: 'Forward headers of drupal call to the external call'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

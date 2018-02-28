@@ -1,0 +1,23 @@
+uuid: 2ec09f4c-a1d5-4f0f-8612-33276feb32b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_guzzlenode_allow_param_for
+    - node.type.guzzle_rest
+id: node.guzzle_rest.field_guzzlenode_allow_param_for
+field_name: field_guzzlenode_allow_param_for
+entity_type: node
+bundle: guzzle_rest
+label: 'Allow guzzlenode parameter forward'
+description: 'Allow forward of parameters : param1_name=aaa&param1_value=bbb -> ?aaa=bbb'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

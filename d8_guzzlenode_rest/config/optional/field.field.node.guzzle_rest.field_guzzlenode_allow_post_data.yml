@@ -1,0 +1,23 @@
+uuid: 4e3f573f-a58c-4d5c-b4bf-8e53375c9fed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_guzzlenode_allow_post_data
+    - node.type.guzzle_rest
+id: node.guzzle_rest.field_guzzlenode_allow_post_data
+field_name: field_guzzlenode_allow_post_data
+entity_type: node
+bundle: guzzle_rest
+label: 'Allow guzzlenode post data forwarding'
+description: 'eg include drupal POST call body to the external call'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
