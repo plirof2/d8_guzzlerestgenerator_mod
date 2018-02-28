@@ -373,7 +373,7 @@ class GuzzlenodeRestResource extends ResourceBase {
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      *   Throws exception expected.
      */      
-    protected function init_variables($nid,$data=null,$method="GET")      {
+    protected function do_request($nid,$data=null,$method="GET")      {
         //PUT common code here 
 
 
