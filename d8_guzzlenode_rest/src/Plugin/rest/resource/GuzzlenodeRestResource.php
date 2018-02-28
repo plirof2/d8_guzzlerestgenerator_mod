@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
  *   label = @Translation("Guzzlenode rest resource"),
  *   uri_paths = {
  *     "canonical" = "/api/relay/{nid}",
- *     "https://www.drupal.org/link-relations/create" = "/api/relay/post"
+ *     "https://www.drupal.org/link-relations/create" = "/api/relay/post/{nid}"
  *
  *   }
  * )
@@ -318,9 +318,9 @@ class GuzzlenodeRestResource extends ResourceBase {
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      *   Throws exception expected.
      */
-    public function post($data) {
+    public function post($nid=0,$data) {
 
-        \Drupal::logger('guzzlenodeResr POST ok')->notice("ok POSTED data=".json_encode($data,true) );  
+        \Drupal::logger('guzzlenodeResr PATCH ok')->notice("ok PATCH nid=".$nid ." || DATA=".json_encode($data,true));  
         /*
         $response = array(
             "data" => $data,
@@ -332,7 +332,7 @@ class GuzzlenodeRestResource extends ResourceBase {
             ),
         );
     */
-        $response= new ResourceResponse(array (0=>'hello'));
+        $response= new ResourceResponse(array (0=>'hello',$data));
         return $response;
         return (new ResourceResponse($response))->addCacheableDependency($build);
     }
@@ -359,7 +359,7 @@ class GuzzlenodeRestResource extends ResourceBase {
             ),
         );
     */
-        $response= new ResourceResponse(array (0=>'hello'));
+        $response= new ResourceResponse(array (0=>'hello',$data));
         return $response;
         return (new ResourceResponse($response))->addCacheableDependency($build);
     }
