@@ -12,6 +12,7 @@ use Psr\Log\LoggerInterface;
 
 use Drupal\guzzlerestgenerator\Http\GuzzleDrupalHttp; // DEPENDS on guzzlerestgenerator module
 use Symfony\Component\HttpFoundation\Request;
+//*     "https://www.drupal.org/link-relations/create" = "/api/relay/post/{nid}"
 
 /**
  * Provides a resource to get view modes by entity and bundle.
@@ -21,6 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
  *   label = @Translation("Guzzlenode rest resource"),
  *   uri_paths = {
  *     "canonical" = "/api/relay/{nid}",
+ *     "https://www.drupal.org/link-relations/create" = "/api/relay/post"
  *
  *   }
  * )
@@ -306,6 +308,61 @@ class GuzzlenodeRestResource extends ResourceBase {
 		return false;
   } //end of function is_in_subarray($val, $entity_get_values){
 
+
+
+    /**
+     * Responds to POST requests.
+     * @return \Drupal\rest\ResourceResponse
+     * Returns a list of bundles for specified entity.
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     *   Throws exception expected.
+     */
+    public function post($data) {
+
+        \Drupal::logger('guzzlenodeResr POST ok')->notice("ok POSTED data=".json_encode($data,true) );  
+        /*
+        $response = array(
+            "data" => $data,
+        );
+
+        $build = array(
+            '#cache' => array(
+                'max-age' => 0,
+            ),
+        );
+    */
+        $response= new ResourceResponse(array (0=>'hello'));
+        return $response;
+        return (new ResourceResponse($response))->addCacheableDependency($build);
+    }
+
+    /**
+     * Responds to POST requests.
+     * @return \Drupal\rest\ResourceResponse
+     * Returns a list of bundles for specified entity.
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     *   Throws exception expected.
+     */
+    public function patch($nid=0,$data) {
+
+        \Drupal::logger('guzzlenodeResr PATCH ok')->notice("ok PATCH nid=".$nid ." || DATA=".json_encode($data,true));  
+        /*
+        $response = array(
+            "data" => $data,
+        );
+
+        $build = array(
+            '#cache' => array(
+                'max-age' => 0,
+            ),
+        );
+    */
+        $response= new ResourceResponse(array (0=>'hello'));
+        return $response;
+        return (new ResourceResponse($response))->addCacheableDependency($build);
+    }
 
 
 }
