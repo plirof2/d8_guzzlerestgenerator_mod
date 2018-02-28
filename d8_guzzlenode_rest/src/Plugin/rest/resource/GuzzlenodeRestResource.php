@@ -104,7 +104,7 @@ class GuzzlenodeRestResource extends ResourceBase {
    *   Throws exception expected.
    */
   //public function get() { //ORIGINAL
-  public function get($nid=0) {    
+  public function get($nid=0,$data) {    
 
   	//SECURITY CHECK #1 user must have a general permission to view NODES 
     // You must to implement the logic of your REST Resource here.
@@ -362,7 +362,22 @@ class GuzzlenodeRestResource extends ResourceBase {
         $response= new ResourceResponse(array (0=>"hello PATCH nid=$nid",$data));
         return $response;
         return (new ResourceResponse($response))->addCacheableDependency($build);
-    }
+    } // END of public function patch($nid=0,$data) {
+
+
+    /**
+     * Responds to GET,POST,PATCH requests.
+     * @return \Drupal\rest\ResourceResponse
+     * Returns a list of bundles for specified entity.
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     *   Throws exception expected.
+     */      
+    protected function init_variables($nid,$data=null,$method="GET")      {
+        //PUT common code here 
+
+
+    }//protected function init_variables()      {
 
 
 }
