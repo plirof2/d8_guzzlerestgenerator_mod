@@ -346,7 +346,7 @@ class GuzzlenodeRestResource extends ResourceBase {
      *   Throws exception expected.
      */
     public function patch($nid=0,$data) {
-
+        $this->do_request($nid,$data,"PATCH");
         \Drupal::logger('guzzlenodeResr PATCH ok')->notice("ok PATCH nid=".$nid ." || DATA=".json_encode($data,true));  
         /*
         $response = array(
@@ -375,8 +375,10 @@ class GuzzlenodeRestResource extends ResourceBase {
      */      
     protected function do_request($nid,$data=null,$method="GET")      {
         //PUT common code here 
+        \Drupal::logger('guzzlenodeResr do_request ok')->notice("ok $method nid=".$nid ." || DATA=".json_encode($data,true));  
 
-
+        $response= new ResourceResponse(array (0=>"do_request Hello nid=$nid",$data));
+        return $response;
     }//protected function init_variables()      {
 
 
