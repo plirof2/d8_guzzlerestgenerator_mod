@@ -268,18 +268,12 @@ class GuzzlenodeRestResource extends ResourceBase {
      
         // NOW we check extra permissions: @@@@ --------------------------------------------------------------
          $current_user_roles=$this->currentUser->getRoles();
-              //get specific guzzlenode parameters:
+         //get status, allowed users and allowed roles lists :
          $guzzlenode_user_api_access = $entity->get('field_guzzlenode_user_api_access')->getValue();
          $guzzlenode_role_api_access = $entity->get('field_guzzlenode_role_api_access')->getValue();
          $status = $entity->get('status')->value; //JON is this guzzlenode published; 
-         $gnode_allow_arg_fwd= $entity->get('field_gnode_allow_arg_fwd')->getValue()[0]['value'];
-         $gnode_allow_head_fwd= $entity->get('field_gnode_allow_head_fwd')->getValue()[0]['value'];
-         $gnode_allow_param_fwd= $entity->get('field_gnode_allow_param_fwd')->getValue()[0]['value'];
-         $gnode_allow_payload_fwd= $entity->get('field_gnode_allow_payload_fwd')->getValue()[0]['value'];
-         $gnode_call_limit= $entity->get('field_guzzlenode_call_limit')->getValue()[0]['value'];
 
 
-         \Drupal::logger('GuzzleNodeRestResource VARIABLES')->notice("gnode_allow_arg_fwd=".json_encode($gnode_allow_arg_fwd,true) . " ||  gnode_allow_head_fwd=".json_encode($gnode_allow_head_fwd,true) ); 
          \Drupal::logger('GuzzleNodeRestResource USER_API_ACCESS')->notice("NODE STATUS= $status ||| current user=".json_encode($this->currentUser->id())."  ||| guzzlenode_user_api_access=".json_encode($guzzlenode_user_api_access,true)."||| guzzlenode_ROLE_api_access=".json_encode($guzzlenode_role_api_access,true));  
 
          if (!$status) {
@@ -298,8 +292,19 @@ class GuzzlenodeRestResource extends ResourceBase {
            //throw new UnauthorizedHttpException();
            throw new UnauthorizedHttpException((string) $challenge, 'Error 4732 - Resource unavailable', $previous);
          }
-      // END of  NOW we check extra permissions: @@@@ ________________________________________________________
-      
+       // END of  NOW we check extra permissions: @@@@ ________________________________________________________
+
+         // Ok Access is allowed. Now we proceed and get the rest settings:
+         //$gnode_allow_arg_fwd= $entity->get('field_gnode_allow_arg_fwd')->getValue()[0]['value'];
+         $gnode_allow_arg_fwd= $entity->get('field_gnode_allow_arg_fwd')->value;
+         $gnode_allow_head_fwd= $entity->get('field_gnode_allow_head_fwd')->value;
+         $gnode_allow_param_fwd= $entity->get('field_gnode_allow_param_fwd')->value;
+         $gnode_allow_payload_fwd= $entity->get('field_gnode_allow_payload_fwd')->value;
+         $gnode_call_limit= $entity->get('field_guzzlenode_call_limit')->value;
+
+         \Drupal::logger('GuzzleNodeVARIABLES')->notice("gnode_allow_arg_fwd=".$gnode_allow_arg_fwd . "||gnode_allow_head_fwd=".json_encode($gnode_allow_head_fwd,true) ); 
+
+
       //From here on we think all are allowed  
 
          //$result[$entity->id()] = $entity->title->value;
@@ -345,8 +350,12 @@ class GuzzlenodeRestResource extends ResourceBase {
               } // END of if ($get_relay_headers=='yes'){          
           } // END OF if ($gnode_allow_head_fwd=="1"){
 
-/*            ok GET type post is implemented but disabled
+
+            
+         // Check if PARAM Forward (as GET url encoded)is selected
+         if ($gnode_allow_param_fwd=="1"){
               // params  (might need to sanitize)
+            /*
               if (isset($get_param1_name) && isset($get_param1_value) ){
                 $get_external_request_array = array(($get_param1_name => $get_param1_value);
                 if (isset($get_param2_name) && isset($get_param2_value) ){
@@ -362,38 +371,42 @@ class GuzzlenodeRestResource extends ResourceBase {
                   } else {
                       $endpoint_url=$endpoint_url.'&'.$get_tail;
                 }
-              }// END of  if (isset($get_param1_name) && isset($get_param1_value) ){       
-*/
+              } // END of  if (isset($get_param1_name) && isset($get_param1_value) ){  
+             */   
+         } //END OF if ($gnode_allow_param_fwd=="1"){     
 
-              \Drupal::logger('DEBUG guzzlenode_rest URI')->notice(" endpoint_url=$endpoint_url ,raw_headers=$raw_headers");
 
-              // Perform GuzzleDrupalHttp request
-              $check = new GuzzleDrupalHttp();
-              // Function call to retrieve cities
-              $response = $check->performRequest($endpoint_url,$request_method,$raw_headers,$payload_data);
-              $contents = (string) $response->getBody();
-              if($response->getStatusCode() == '200'){
-                if($contents != ''){
-                  //check for permission here
-                  ///$result[$entity->id()]=$contents; //add all instances as a ARRAY (not need this at this time OK WORKS) // solution #3 (escaped chars)
-                  $result=$contents;// ok WORKS // solution #1 (escaped chars) 
-                  //print_r($contents);//ok WORKS // solution #2
-                }else{
-                  print_r('200 '.$response->getReasonPhrase());
-                }
-              }
-              else{
-               // $result[$entity->id()] = $entity->title->value;
-                ///$result[$entity->id()]=$contents; //add all instances as a ARRAY (not need this at this time OK WORKS)// solution #3 (escaped chars)
-                $result=$contents; // ok WORKS // solution #1 (escaped chars) 
+
+         \Drupal::logger('DEBUG guzzlenode_rest URI')->notice(" endpoint_url=$endpoint_url ,raw_headers=$raw_headers");
+         //ALL 
+         // Perform GuzzleDrupalHttp request
+         $check = new GuzzleDrupalHttp();
+         // Function call to retrieve cities
+         $response = $check->performRequest($endpoint_url,$request_method,$raw_headers,$payload_data);
+         $contents = (string) $response->getBody();
+         if($response->getStatusCode() == '200'){
+             if($contents != ''){
+               //check for permission here
+               ///$result[$entity->id()]=$contents; //add all instances as a ARRAY (not need this at this time OK WORKS) // solution #3 (escaped chars)
+               $result=$contents;// ok WORKS // solution #1 (escaped chars) 
+               //print_r($contents);//ok WORKS // solution #2
+             }else{
+               print_r('200 '.$response->getReasonPhrase());
+             }
+         }
+         else{
+             // $result[$entity->id()] = $entity->title->value;
+             ///$result[$entity->id()]=$contents; //add all instances as a ARRAY (not need this at this time OK WORKS)// solution #3 (escaped chars)
+             $result=$contents; // ok WORKS // solution #1 (escaped chars) 
                 
-                //print_r($contents);//ok WORKS // solution #2
+             //print_r($contents);//ok WORKS // solution #2
                
-                echo '</br>Response Status Code: ';
-                print_r($response->getStatusCode());
-                echo '</br>Reason Phrase: ';
-                print_r($response->getReasonPhrase());
-              }
+            echo '</br>Response Status Code: ';
+            print_r($response->getStatusCode());
+            echo '</br>Reason Phrase: ';
+            print_r($response->getReasonPhrase());
+         } // END of   if($response->getStatusCode() == '200'){
+
               //die();  // ### NOTE: This assumes that we only want 1 guzzlenode entity each time (this mshould be correct - solution #3 will not work with die() )
 
       };// END of  if($node->getType() == 'guzzle_rest'){
