@@ -11,9 +11,11 @@ At this point you must manually enable guzzlenode_user_api_access and  guzzlenod
 http://mydrupalsite/admin/structure/types/manage/guzzle_rest/form-display
 
 ###Access rights:
+This is a general permission to be able to access ALL guzzlenodes/external APIs (but not use them - you will need to specify usernames/roles inside EACH guzzlenode). Note 1: this ENABLES/DISABLES everything for everyone.So, you MUST have this permission in order to do anything. Note 2: From "RESTful Web Services" you can further control access to Drupal GET,POST,PATCH REST points. The final check is done when you check if the current USERNAME is declared in the specific guzzlenode
+
 - Give permissions /admin/people/permissions to Drupal REST -> from here allow GET,POST,PATCH REST access to this drupal guzzlenode
 - Give permissions /admin/people/permissions to All GuzzleNodes (initial access) -> **d8_guzzlenode_rest->GuzzleREST - General access to external guzzleAPIs** :  This gives general access to external guzzleAPIs .(machine name: guzzlenode allow access to ext API guzzlenodes)
-- 
+- by default all REST GET,POST are already activated from here : /admin/config/services/rest/resource/guzzlenode_rest_resource/edit
 - 
 
 ## Usage administration-side: 
