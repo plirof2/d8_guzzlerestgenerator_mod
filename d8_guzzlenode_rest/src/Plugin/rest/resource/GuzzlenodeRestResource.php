@@ -113,6 +113,10 @@ class GuzzlenodeRestResource extends ResourceBase {
       throw new AccessDeniedHttpException();
     }
 
+    if (!$this->currentUser->hasPermission('guzzlenode allow access to ext API guzzlenodes')) {
+      \Drupal::logger('guzzlenode_rest ACCESS debug')->notice("NOOOO  we DO NOT have guzzlenode allow access to ext API guzzlenodes PERMISSION");
+    } else {      \Drupal::logger('guzzlenode_rest ACCESS debug')->notice("OK we HAVE guzzlenode allow access to ext API guzzlenodes PERMISSION"); }   
+
       //$entities = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple(); //ORIG WORKED
 
       $entities = \Drupal::entityTypeManager()

@@ -10,7 +10,11 @@ Note : for relay_headers to work you need the modified guzzlerestgenerator modul
 At this point you must manually enable guzzlenode_user_api_access and  guzzlenode_role_api_access FIELDS from 
 http://mydrupalsite/admin/structure/types/manage/guzzle_rest/form-display
 
-
+###Access rights:
+- Give permissions /admin/people/permissions to Drupal REST -> from here allow GET,POST,PATCH REST access to this drupal guzzlenode
+- Give permissions /admin/people/permissions to All GuzzleNodes (initial access) -> **d8_guzzlenode_rest->GuzzleREST - General access to external guzzleAPIs** :  This gives general access to external guzzleAPIs .(machine name: guzzlenode allow access to ext API guzzlenodes)
+- 
+- 
 
 ## Usage administration-side: 
 First you enable from REST-UI guzzle node
@@ -27,11 +31,11 @@ Then you need to define access.
 ## Usage external-client-side #1: 
 You can connect with urls like :
 
-http://mydrupal.com/api/relay/getalbums?_format=hal_json&param1=Ubuntu&param2=Music
+**http://mydrupal.com/api/relay/getalbums?_format=hal_json&param1=Ubuntu&param2=Music**
 
-this will relay your request as 
+this will relay/forward your request as :
 
-http://myjsonserver/albums/Ubuntu/Music
+**http://myjsonserver/albums/Ubuntu/Music**
 
 
 ## Usage external-client-side #2: 

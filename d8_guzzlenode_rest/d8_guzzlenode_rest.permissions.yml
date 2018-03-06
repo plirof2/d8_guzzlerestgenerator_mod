@@ -1,0 +1,5 @@
+# In my_module.permissions.yml file.
+guzzlenode allow access to ext API guzzlenodes:
+  title: 'GuzzleREST - General access to external guzzleAPIs'
+  description: 'This is a general permission to be able to access ALL guzzlenodes/external APIs (but not use them - you will need to specify usernames/roles inside EACH guzzlenode)'
+  restrict access: TRUE
