@@ -1,0 +1,25 @@
+uuid: e62ee164-0bfb-4eeb-9cc9-724b1d11a72e
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - d8_guzzlenode_rest
+    - hal
+    - serialization
+    - simple_oauth
+    - user
+id: guzzlenode_rest_resource
+plugin_id: guzzlenode_rest_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - basic_auth
+    - oauth2
+    - cookie

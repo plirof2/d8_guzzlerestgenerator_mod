@@ -11,6 +11,7 @@ At this point you must manually enable guzzlenode_user_api_access and  guzzlenod
 http://mydrupalsite/admin/structure/types/manage/guzzle_rest/form-display
 
 
+
 ## Usage administration-side: 
 First you enable from REST-UI guzzle node
 and set permissions/auth types etc
