@@ -1,12 +1,11 @@
-uuid: 0a323de6-ca68-466c-a254-cfb1f97afd49
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_guzzlenode_allow_arg_forwa
+    - field.storage.node.field_gnode_allow_arg_fwd
     - node.type.guzzle_rest
-id: node.guzzle_rest.field_guzzlenode_allow_arg_forwa
-field_name: field_guzzlenode_allow_arg_forwa
+id: node.guzzle_rest.field_gnode_allow_arg_fwd
+field_name: field_gnode_allow_arg_fwd
 entity_type: node
 bundle: guzzle_rest
 label: 'Allow guzzlenode arg forwarding'
@@ -15,7 +14,7 @@ required: false
 translatable: false
 default_value:
   -
-    value: 0
+    value: 1
 default_value_callback: ''
 settings:
   on_label: 'On'

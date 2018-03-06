@@ -1,11 +1,10 @@
-uuid: 4e9a2d89-9233-44ac-9b98-c38216bc1632
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_guzzlenode_allow_param_for
-field_name: field_guzzlenode_allow_param_for
+id: node.field_gnode_allow_arg_fwd
+field_name: field_gnode_allow_arg_fwd
 entity_type: node
 type: boolean
 settings: {  }

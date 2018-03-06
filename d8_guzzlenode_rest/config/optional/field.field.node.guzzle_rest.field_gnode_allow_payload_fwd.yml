@@ -1,12 +1,11 @@
-uuid: 4e3f573f-a58c-4d5c-b4bf-8e53375c9fed
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_guzzlenode_allow_post_data
+    - field.storage.node.field_gnode_allow_payload_fwd
     - node.type.guzzle_rest
-id: node.guzzle_rest.field_guzzlenode_allow_post_data
-field_name: field_guzzlenode_allow_post_data
+id: node.guzzle_rest.field_gnode_allow_payload_fwd
+field_name: field_gnode_allow_payload_fwd
 entity_type: node
 bundle: guzzle_rest
 label: 'Allow guzzlenode post data forwarding'

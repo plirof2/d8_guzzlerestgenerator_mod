@@ -247,10 +247,7 @@ class GuzzlenodeRestResource extends ResourceBase {
           $get_param1_value = $this->currentRequest->get('param1_value'); //get URL REST node id drupal.com/restapi/?myname=john  
           $get_param2_value = $this->currentRequest->get('param2_value'); //get URL REST node id drupal.com/restapi/?myname=john              
       */
-      // Arguments are SEND to the client in this format : http://externalapi.com/arg1/arg2
-      $get_arg1 = $this->currentRequest->get('arg1'); //get URL REST node id drupal.com/restapi/?myname=john  
-      $get_arg2 = $this->currentRequest->get('arg2'); //get URL REST node id drupal.com/restapi/?myname=john  
-      $get_relay_headers = $this->currentRequest->get('relay_headers'); //get URL REST relay headers to the next request ? (this is used for requesting a drupal api FROM INSIDE drupal API - kind like subreqiests)
+
       //$node_id_from_arg = $nid;
       //$node_id_from_alias=\Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid); //GET path alias from node_ideg drupal.com/restapi/myalbum
       //Todo Do some chech if $nid is number
@@ -270,16 +267,24 @@ class GuzzlenodeRestResource extends ResourceBase {
       if( ( $entity->id()==$nid) || ( $entity->id()==$node_id_from_alias) ){   // test URLs like drupal.com/restapi/4 or drupal.com/restapi/myalbum
      
         // NOW we check extra permissions: @@@@ --------------------------------------------------------------
-              $guzzlenode_user_api_access = $entity->get('field_guzzlenode_user_api_access')->getValue();
-              $guzzlenode_role_api_access = $entity->get('field_guzzlenode_role_api_access')->getValue();
-              $current_user_roles=$this->currentUser->getRoles();
-              $status = $entity->get('status')->value; //JON try to get Published status @@@@@@@@@@@@@@
-              //\Drupal::logger('GuzzleNodeRestResource 1')->notice("guzzlenode_user_api_access=".json_decode($guzzlenode_user_api_access,true)); 
-              \Drupal::logger('GuzzleNodeRestResource USER_API_ACCESS')->notice("NODE STATUS= $status ||| current user=".json_encode($this->currentUser->id())."  ||| guzzlenode_user_api_access=".json_encode($guzzlenode_user_api_access,true)."||| guzzlenode_ROLE_api_access=".json_encode($guzzlenode_role_api_access,true));  
+         $current_user_roles=$this->currentUser->getRoles();
+              //get specific guzzlenode parameters:
+         $guzzlenode_user_api_access = $entity->get('field_guzzlenode_user_api_access')->getValue();
+         $guzzlenode_role_api_access = $entity->get('field_guzzlenode_role_api_access')->getValue();
+         $status = $entity->get('status')->value; //JON is this guzzlenode published; 
+         $gnode_allow_arg_fwd= $entity->get('field_gnode_allow_arg_fwd')->getValue()[0]['value'];
+         $gnode_allow_head_fwd= $entity->get('field_gnode_allow_head_fwd')->getValue()[0]['value'];
+         $gnode_allow_param_fwd= $entity->get('field_gnode_allow_param_fwd')->getValue()[0]['value'];
+         $gnode_allow_payload_fwd= $entity->get('field_gnode_allow_payload_fwd')->getValue()[0]['value'];
+         $gnode_call_limit= $entity->get('field_guzzlenode_call_limit')->getValue()[0]['value'];
 
-             if (!$status) {
-           //throw new UnauthorizedHttpException();
-           throw new UnauthorizedHttpException((string) $challenge, 'Error 4532 - Resource disabled', $previous);
+
+         \Drupal::logger('GuzzleNodeRestResource VARIABLES')->notice("gnode_allow_arg_fwd=".json_encode($gnode_allow_arg_fwd,true) . " ||  gnode_allow_head_fwd=".json_encode($gnode_allow_head_fwd,true) ); 
+         \Drupal::logger('GuzzleNodeRestResource USER_API_ACCESS')->notice("NODE STATUS= $status ||| current user=".json_encode($this->currentUser->id())."  ||| guzzlenode_user_api_access=".json_encode($guzzlenode_user_api_access,true)."||| guzzlenode_ROLE_api_access=".json_encode($guzzlenode_role_api_access,true));  
+
+         if (!$status) {
+            //throw new UnauthorizedHttpException();
+            throw new UnauthorizedHttpException((string) $challenge, 'Error 4532 - Resource disabled or unpublished', $previous);
          }
 
          //if current user is NOT in the allowed users then STOP HIM
@@ -294,37 +299,51 @@ class GuzzlenodeRestResource extends ResourceBase {
            throw new UnauthorizedHttpException((string) $challenge, 'Error 4732 - Resource unavailable', $previous);
          }
       // END of  NOW we check extra permissions: @@@@ ________________________________________________________
+      
       //From here on we think all are allowed  
 
          //$result[$entity->id()] = $entity->title->value;
               // Retrieve node fields to perform REST request
-              $endpoint_url = $entity->get('field_guzzle_endpoint_url')->uri;
-              $request_method = $entity->get('field_guzzle_request_method')->value;
-              $raw_headers = $entity->get('field_guzzle_raw_headers')->value;
-              $payload_data = $entity->get('field_guzzle_data_payload')->value;
+         $endpoint_url = $entity->get('field_guzzle_endpoint_url')->uri;
+         $request_method = $entity->get('field_guzzle_request_method')->value;
+         $raw_headers = $entity->get('field_guzzle_raw_headers')->value;
+         $payload_data = $entity->get('field_guzzle_data_payload')->value;
               
+         // Check if Arg Forward is selected
+         if ($gnode_allow_arg_fwd=="1"){
+             // Arguments are SEND to the client in this format : http://externalapi.com/arg1/arg2
+             $get_arg1 = $this->currentRequest->get('arg1'); //get URL REST node id drupal.com/restapi/?myname=john  
+             $get_arg2 = $this->currentRequest->get('arg2'); //get URL REST node id drupal.com/restapi/?myname=john  
+             //get URL REST relay headers to the next request ? (this is used for requesting a drupal api FROM INSIDE drupal API - kind like subreqiests)
+             
 
-              // ARGUMENTS
-              if (isset($get_arg1)){
+             // ARGUMENTS
+             if (isset($get_arg1)){
                 $endpoint_url=$endpoint_url.'/'.$get_arg1; // ******** Might need to sanitaze
                 if (isset($get_arg2)){
-                  $endpoint_url=$endpoint_url.'/'.$get_arg2; // ******** Might need to sanitaze
+                    $endpoint_url=$endpoint_url.'/'.$get_arg2; // ******** Might need to sanitaze
                 }
-              }// END of if (isset($get_arg1)){
+             }// END of if (isset($get_arg1)){
 
-              // Pass headers to the next request (used for internal subrequests -mainly for authentication)
-                
-              if ($get_relay_headers=='yes'){
+             // Pass headers to the next request (used for internal subrequests -mainly for authentication)
+                    
+
+          } // END OF if ($gnode_allow_arg_fwd=="1"){
+
+         // Check for headers foowrward . Forward "Authorization:"" header to External Request"
+         if ($gnode_allow_head_fwd=="1"){
+             $get_relay_headers = $this->currentRequest->get('relay_headers'); 
+             if ($get_relay_headers=='yes'){
                 //\Drupal::logger('raw_headers BEFORE DEBUG guzzlenode_rest URI')->notice("raw_headers=$raw_headers");
                 //Relay Authorization Header... NOTE to NOT overwrite ORiginal
                 //ToDO: ralay ALL headers to next request @@@@
                 $currentRequestAuthorizationHeader=$this->currentRequest->headers->get( 'Authorization' );
                 if ($currentRequestAuthorizationHeader!=null) {
-                  $raw_headers=$raw_headers."\r\n".'Authorization:'.$currentRequestAuthorizationHeader;
-                  //\Drupal::logger('raw_headers AFTER DEBUG guzzlenode_rest URI')->notice("raw_headers=$raw_headers"); 
+                    $raw_headers=$raw_headers."\r\n".'Authorization:'.$currentRequestAuthorizationHeader;
+                    //\Drupal::logger('raw_headers AFTER DEBUG guzzlenode_rest URI')->notice("raw_headers=$raw_headers"); 
                 }
-
-              } // END of if ($get_relay_headers=='yes'){
+              } // END of if ($get_relay_headers=='yes'){          
+          } // END OF if ($gnode_allow_head_fwd=="1"){
 
 /*            ok GET type post is implemented but disabled
               // params  (might need to sanitize)
