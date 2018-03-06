@@ -18,6 +18,12 @@ This is a general permission to be able to access ALL guzzlenodes/external APIs 
 - by default all REST GET,POST are already activated from here : /admin/config/services/rest/resource/guzzlenode_rest_resource/edit
 - 
 
+Notes:
+ERRORS:
+ Error 4732 = This means that current username is NOT defined inside guzzlenode so we can allow him to access this resource.
+ Error 4532 = Resource disabled. This resource is unpublished (the specific guzzlenode is saved as unpublished).
+
+
 ## Usage administration-side: 
 First you enable from REST-UI guzzle node
 and set permissions/auth types etc
