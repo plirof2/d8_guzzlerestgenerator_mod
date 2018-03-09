@@ -48,6 +48,11 @@ this will relay/forward your request as :
 
 ## Usage external-client-side #2: 
 
+### Forward POST
+If you POST to the 
+**http://mydrupal.com/api/relay/post/3**
+and you have POST/Payload body forward enabled then, the body you have post will be forwarded to the external API call.
+
 ### Args :
 **http://mydrupal.com/api/relay/getalbums?_format=json&arg[2]=world&arg[1]=hello**
 will send to the external API a request like
@@ -65,8 +70,8 @@ Will produce :
 At this point we accept up to 5 params : param_name[1],param_value[1]...param_name[5],param_value[5]
 
 ## To Do: 
+- Allow FIXED payload to accept variables from drupal rest call API point
 - replace use Drupal\guzzlerestgenerator\Http\GuzzleDrupalHttp with a local one
-- Implement POST
 - Implement PUT
 - Implement access per SPECIFIC guzzle_node (per role or user)
 
