@@ -56,10 +56,13 @@ will send to the external API a request like
 At this point we accept up to 5 args : arg[1]...arg[5].
 
 ### Parameters :
- - 
- - 
- - 
+Pass parameters to External API url 
+eg 
+ **http://mydrupal.com/api/relay/3?_format=json&param_name[1]=hello&param_value[1]=55555555&param_name[2]=world&param_value[2]=44444**
+Will produce :
+**http://myexternalserver?hello=55555555&world=44444**
 
+At this point we accept up to 5 params : param_name[1],param_value[1]...param_name[5],param_value[5]
 
 ## To Do: 
 - replace use Drupal\guzzlerestgenerator\Http\GuzzleDrupalHttp with a local one

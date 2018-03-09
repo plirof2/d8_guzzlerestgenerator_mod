@@ -375,7 +375,7 @@ class GuzzlenodeRestResource extends ResourceBase {
 				for ($i=1;$i<=5;$i++){
 					if (isset($param_names_array[$i]) && isset($param_values_array[$i] ))
 					{
-						$get_external_request_params_array = array($param_names_array[$i] => $param_values_array[$i]);
+						$get_external_request_params_array [$param_names_array[$i]]= $param_values_array[$i];
 						//$endpoint_url=$endpoint_url.'/'.$param_names_array[$i]; // ******** Might need to sanitaze
 					}
 				} //end of for ($i=1;$i<=5;$i++){
