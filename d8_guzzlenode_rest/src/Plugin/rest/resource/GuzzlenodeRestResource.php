@@ -319,8 +319,8 @@ class GuzzlenodeRestResource extends ResourceBase {
 
          // Check if Arg Forward is selected
          if ($gnode_allow_arg_fwd=="1"){
-             // Arguments are SEND to the client in this format : http://externalapi.com/arg1/arg2
-             //get URL REST relay headers to the next request ? (this is used for requesting a drupal api FROM INSIDE drupal API - kind like subreqiests)
+            // Arguments are SEND to the client in this format : http://externalapi.com/arg1/arg2
+            //get URL REST relay headers to the next request ? (this is used for requesting a drupal api FROM INSIDE drupal API - kind like subreqiests)
 			$args_array=$this->currentRequest->get('arg');
 			$count_args=count($args_array);
 			if($count_args>0 ){
@@ -330,8 +330,8 @@ class GuzzlenodeRestResource extends ResourceBase {
 					{
 						$endpoint_url=$endpoint_url.'/'.$args_array[$i]; // ******** Might need to sanitaze
 					}
-
 				}
+				$endpoint_url=$endpoint_url.'/'; //Add a trailing slash to the end of the external URL <-----
 			\Drupal::logger('endpoint_url guzzlenode_rest ok GET ARGS')->notice(" endpoint_url=$endpoint_url");
 			}// END of if($count_args>0 ){                 
           } // END OF if ($gnode_allow_arg_fwd=="1"){
@@ -356,24 +356,30 @@ class GuzzlenodeRestResource extends ResourceBase {
         if ($method=="POST" && $gnode_allow_payload_fwd=="1"){
             //$payload_to_forward = $entity->get('field_guzzle_data_payload')->value;
           // NOTE @@@@@@@@@@  payload_data handling must be fixed in ORIGINAL 
-          \Drupal::logger('DEBUG guzzlenode_rest ok POST FWD')->notice(" payload_BEFORE=".json_encode($payload_data,true)); 
+          //\Drupal::logger('DEBUG guzzlenode_rest ok POST FWD')->notice(" payload_BEFORE=".json_encode($payload_data,true)); 
           $payload_data=json_encode($data,true);
-          \Drupal::logger('DEBUG guzzlenode_rest ok POST FWD')->notice(" payload_ENCODED=".json_encode($payload_data,true));
-            \Drupal::logger('DEBUG guzzlenode_rest ok POST FWD')->notice(" data ENC=".json_encode($data,true)); 
+          //\Drupal::logger('DEBUG guzzlenode_rest ok POST FWD')->notice(" payload_ENCODED=".json_encode($payload_data,true));
+          //  \Drupal::logger('DEBUG guzzlenode_rest ok POST FWD')->notice(" data ENC=".json_encode($data,true)); 
         } // END Of  if ($gnode_allow_param_fwd=="1"){
 
 
-         // Check if PARAM Forward (as GET url encoded)is selected
+         // Check if PARAM Forward (as GET url encoded)is selected // params  (might need to sanitize)
          if ($gnode_allow_param_fwd=="1"){
-              // params  (might need to sanitize)
-            /*
-              if (isset($get_param1_name) && isset($get_param1_value) ){
-                $get_external_request_array = array(($get_param1_name => $get_param1_value);
-                if (isset($get_param2_name) && isset($get_param2_value) ){
-                  $get_external_request_array[$get_param2_name]= $get_param2_value;
-                }
-                $get_tail=http_build_query($get_external_request_array);
 
+			$param_names_array=$this->currentRequest->get('param_name');
+			$param_values_array=$this->currentRequest->get('param_value');
+			$count_params=count($param_names_array);
+			$get_external_request_params_array=array();
+			if($count_params>0 ){
+				if ($count_params>5) $count_params=5; // we check ONLY the first 5 
+				for ($i=1;$i<=5;$i++){
+					if (isset($param_names_array[$i]) && isset($param_values_array[$i] ))
+					{
+						$get_external_request_params_array = array($param_names_array[$i] => $param_values_array[$i]);
+						//$endpoint_url=$endpoint_url.'/'.$param_names_array[$i]; // ******** Might need to sanitaze
+					}
+				} //end of for ($i=1;$i<=5;$i++){
+				$get_tail=http_build_query($get_external_request_params_array);
                 $pos = strpos($endpoint_url, '?'); //check if our external API URL already contains '?' Note: This check might NOT be needed
                   // Note our use of ===.  Simply == would not work as expected
                   // because the position of 'a' was the 0th (first) character.
@@ -381,9 +387,10 @@ class GuzzlenodeRestResource extends ResourceBase {
                       $endpoint_url=$endpoint_url.'?'.$get_tail;
                   } else {
                       $endpoint_url=$endpoint_url.'&'.$get_tail;
-                }
-              } // END of  if (isset($get_param1_name) && isset($get_param1_value) ){  
-             */   
+                }				
+
+			\Drupal::logger('PARAM endpoint_url guzzlenode_rest ok GET ARGS')->notice(" endpoint_url=$endpoint_url   ");
+			}// END of if($count_args>0 ){
          } //END OF if ($gnode_allow_param_fwd=="1"){     
 
 
