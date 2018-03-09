@@ -10,7 +10,7 @@ Note : for relay_headers to work you need the modified guzzlerestgenerator modul
 At this point you must manually enable guzzlenode_user_api_access and  guzzlenode_role_api_access FIELDS from 
 http://mydrupalsite/admin/structure/types/manage/guzzle_rest/form-display
 
-###Access rights:
+### Access rights:
 This is a general permission to be able to access ALL guzzlenodes/external APIs (but not use them - you will need to specify usernames/roles inside EACH guzzlenode). Note 1: this ENABLES/DISABLES everything for everyone.So, you MUST have this permission in order to do anything. Note 2: From "RESTful Web Services" you can further control access to Drupal GET,POST,PATCH REST points. The final check is done when you check if the current USERNAME is declared in the specific guzzlenode
 
 - Give permissions /admin/people/permissions to Drupal REST -> from here allow GET,POST,PATCH REST access to this drupal guzzlenode
@@ -47,13 +47,21 @@ this will relay/forward your request as :
 
 
 ## Usage external-client-side #2: 
-###Parameters :
+
+### Args :
+**http://mydrupal.com/api/relay/getalbums?_format=json&arg[2]=world&arg[1]=hello**
+will send to the external API a request like
+
+**http://myexternalserver/hello/world**
+At this point we accept up to 5 args : arg[1]...arg[5].
+
+### Parameters :
  - 
  - 
  - 
 
 
-##To Do: 
+## To Do: 
 - replace use Drupal\guzzlerestgenerator\Http\GuzzleDrupalHttp with a local one
 - Implement POST
 - Implement PUT
