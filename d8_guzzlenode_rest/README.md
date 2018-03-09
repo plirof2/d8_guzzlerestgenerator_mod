@@ -53,6 +53,14 @@ If you POST to the
 **http://mydrupal.com/api/relay/post/3**
 and you have POST/Payload body forward enabled then, the body you have post will be forwarded to the external API call.
 
+### Forward Headers
+If you have enabled this :
+If you post a header named 
+**authorisation2:...**
+then it will be forwarded as a standard
+**authorisation:..**
+header to the external API
+
 ### Args :
 **http://mydrupal.com/api/relay/getalbums?_format=json&arg[2]=world&arg[1]=hello**
 will send to the external API a request like

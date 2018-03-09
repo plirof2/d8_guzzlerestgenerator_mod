@@ -338,12 +338,14 @@ class GuzzlenodeRestResource extends ResourceBase {
 
          // Check for headers foowrward . Forward "Authorization:"" header to External Request"
          if ($gnode_allow_head_fwd=="1"){
-             $get_relay_headers = $this->currentRequest->get('relay_headers'); 
+             //$get_relay_headers = $this->currentRequest->get('relay_headers'); 
+             $get_relay_headers ='yes';
              if ($get_relay_headers=='yes'){
-                //\Drupal::logger('raw_headers BEFORE DEBUG guzzlenode_rest URI')->notice("raw_headers=$raw_headers");
+                \Drupal::logger('raw_headers BEFORE DEBUG guzzlenode_rest URI')->notice("raw_headers=$raw_headers");
                 //Relay Authorization Header... NOTE to NOT overwrite ORiginal
                 //ToDO: ralay ALL headers to next request @@@@
-                $currentRequestAuthorizationHeader=$this->currentRequest->headers->get( 'Authorization' );
+                ///$currentRequestAuthorizationHeader=$this->currentRequest->headers->get( 'Authorization' );
+                $currentRequestAuthorizationHeader=$this->currentRequest->headers->get( 'Authorization2' );
                 if ($currentRequestAuthorizationHeader!=null) {
                     $raw_headers=$raw_headers."\r\n".'Authorization:'.$currentRequestAuthorizationHeader;
                     //\Drupal::logger('raw_headers AFTER DEBUG guzzlenode_rest URI')->notice("raw_headers=$raw_headers"); 
