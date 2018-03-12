@@ -10,7 +10,8 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Psr\Log\LoggerInterface;
 
-use Drupal\guzzlerestgenerator\Http\GuzzleDrupalHttp; // DEPENDS on guzzlerestgenerator module
+//use Drupal\guzzlerestgenerator\Http\GuzzleDrupalHttp; // DEPENDS on guzzlerestgenerator module
+use Drupal\d8_guzzlenode_rest\Http\GuzzleDrupalHttp;
 use Symfony\Component\HttpFoundation\Request;
 //*     "https://www.drupal.org/link-relations/create" = "/api/relay/post/{nid}"
 
