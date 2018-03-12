@@ -123,7 +123,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjAzNjdhY2U5OTIzZjBlNWQ0OGExNTNjM2E2Nzc2ZDQwOTgwNmEwMmE1ZGIxNWJjNTRmMDZlMmI5YzE2MGRiYTU4YjVmZjMyMzNlZTdjZTEzIn0.eyJhdWQiOiIyIiwianRpIjoiMDM2N2FjZTk5MjNmMGU1ZDQ4YTE1M2MzYTY3NzZkNDA5ODA2YTAyYTVkYjE1YmM1NGYwNmUyYjljMTYwZGJhNThiNWZmMzIzM2VlN2NlMTMiLCJpYXQiOjE1MjA4NDQ4OTgsIm5iZiI6MTUyMDg0NDg5OCwiZXhwIjoxNTIwODQ1NDk4LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.pO8WiLnnB_vAjzfo-GowKLzLqCewLGMfVgDWwA23lrcVoGAaWRaz6Fv46PcZc7QPk-Pn03FoC2zPUvlWMN5MAQFEjscMYCgi597fhiGb_wEAhGcXI62SYpIFPk-CKL5UeSPp_yHVcwuYmisGZQMysFPElRvKdIW09VSewWyw8dJUSAqjd9XcenV7jSANOLTFyCSzqVOdPH31yAnUWpLx-6apttAuw0reChq8850z3-qQNteR16ZCjQeskO8Nn5JUUc3KNi4Rc_XRdfXx99HX3SeVLB7Cfbq3NQaJdahyLXCMd7t27Ga4dcgjAAmc89KhhdR5ByYnnuk0FrLQTctTeIrRoGZGd49qWOhZIgyvsskM2-U1dUT_N7s-X09udBAa02_aGUhZiWSedgCzyE_HiwWwwXO_eCkhbCV8GingE_pt7wFO65J_V0xGkkX-v8EKnIbStA5tPMlFIoqGuT_lgR4bcxczMrq1EvtjAVKIwjRlvzcgxlQL7Rz9yCefO4-lIk503uu5VuXb_KWfu7u949OnWRkxdpSY1PX8nzMmxj23Vz_72Y-wl7v_kg7afB1q444B7yYcuW7qAfscymGWyfP-QixTlg0fhguasFd4JRp7i3i1haHTLo1xU9dPFh7UqAivC_fv9vTPhB3daD_wzLdSN8_p0Noq1IcYEJnDphQ",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY0NDdlYTdjYmJjNWZhMzUxZDMzMDBjYjAwYWY3MzNhYTA1NzM1MTZjNTUwNTczNWQ4OGMxZTA0YzM3NjI4ODIyNjU1ZWVlMjg1NWQ3NjljIn0.eyJhdWQiOiIyIiwianRpIjoiNjQ0N2VhN2NiYmM1ZmEzNTFkMzMwMGNiMDBhZjczM2FhMDU3MzUxNmM1NTA1NzM1ZDg4YzFlMDRjMzc2Mjg4MjI2NTVlZWUyODU1ZDc2OWMiLCJpYXQiOjE1MjA4NTI1MDcsIm5iZiI6MTUyMDg1MjUwNywiZXhwIjoxNTIwODUzMTA3LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.P0_Txwu4-KuSyss6wzuHdxrwJbi-Qm3aurG3Octs7fCZyV-tvl79zLQPs5CP5Jtw08OXZXnqBaBauTKbIuIoIE9pmPatMSCMU3FwplWuWpIPCZnHH41sq7I9oD9vBrLMJ02QsEGEjUrdvUqY9e4Kx4k3JDUKbAuvlaxtFvRV6WQlBjYa9NVmpEpNSekxsWCTNrBDnIvSmSISIhsRqBfo1dVTPpSFmwSn3BXfHwk2U6iwm1c0zggqE9fDxICvZFi1rT-pEtBDWRVwefEUa8Znt46siFUed5WWHHE2VBe-TqSHf1q4ld43QeWGJ-KaMlrdSSsfcl7POZXGrY2iQNTf8rWwjGZExgeukAjMsQAqaBvaEKqZMZEC7GmWRV1EWfGQ0cCnZdqODYExKKc3lQBFFTx3-Ps8rcltHeIPhqlgj0M-1T5KBWGzFC2N2J9bf8rMYpCmaznjWB8ywAprMwdbfqq7H-XhO2UhDgkXPJV6i_DYKltcO1oGHgqOkLpxaSbuJkYeJVE51Uwhgi0cvG3tl4LmAkc1j9dpuwH9HN1ZkftbQ0k48Padr8EcqpMf92KJII2yxiM72Pn2tc-sQA_vvQi8DTqF_FUPMCbprChnwDcWp8SxGC8Id1t0Zn2IsE6CkzKpR2OpNRJ2LyjB6v00fTXu_n2J10wQHVbAmmH9Spo",
 						"description": ""
 					}
 				],
@@ -152,6 +152,282 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"name\": \"jj1OH LA LA LAND\",\n    \"email\": \"jon_direct_01@hotmail.gr\",\n    \"password\": \"something\",\n    \"created_at\": \"2018-02-19 21:30:53\",\n    \"updated_at\": \"2018-02-19 21:30:53\",\n    \"scope\": \"proedros\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "05-D8-POST-GEThttp://ostdev.minedu.gov.gr/api/user copy copy",
+			"request": {
+				"url": {
+					"raw": "localhost/drupal8test/api/relay/post/4?_format=json",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"api",
+						"relay",
+						"post",
+						"4"
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization2",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY0NDdlYTdjYmJjNWZhMzUxZDMzMDBjYjAwYWY3MzNhYTA1NzM1MTZjNTUwNTczNWQ4OGMxZTA0YzM3NjI4ODIyNjU1ZWVlMjg1NWQ3NjljIn0.eyJhdWQiOiIyIiwianRpIjoiNjQ0N2VhN2NiYmM1ZmEzNTFkMzMwMGNiMDBhZjczM2FhMDU3MzUxNmM1NTA1NzM1ZDg4YzFlMDRjMzc2Mjg4MjI2NTVlZWUyODU1ZDc2OWMiLCJpYXQiOjE1MjA4NTI1MDcsIm5iZiI6MTUyMDg1MjUwNywiZXhwIjoxNTIwODUzMTA3LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.P0_Txwu4-KuSyss6wzuHdxrwJbi-Qm3aurG3Octs7fCZyV-tvl79zLQPs5CP5Jtw08OXZXnqBaBauTKbIuIoIE9pmPatMSCMU3FwplWuWpIPCZnHH41sq7I9oD9vBrLMJ02QsEGEjUrdvUqY9e4Kx4k3JDUKbAuvlaxtFvRV6WQlBjYa9NVmpEpNSekxsWCTNrBDnIvSmSISIhsRqBfo1dVTPpSFmwSn3BXfHwk2U6iwm1c0zggqE9fDxICvZFi1rT-pEtBDWRVwefEUa8Znt46siFUed5WWHHE2VBe-TqSHf1q4ld43QeWGJ-KaMlrdSSsfcl7POZXGrY2iQNTf8rWwjGZExgeukAjMsQAqaBvaEKqZMZEC7GmWRV1EWfGQ0cCnZdqODYExKKc3lQBFFTx3-Ps8rcltHeIPhqlgj0M-1T5KBWGzFC2N2J9bf8rMYpCmaznjWB8ywAprMwdbfqq7H-XhO2UhDgkXPJV6i_DYKltcO1oGHgqOkLpxaSbuJkYeJVE51Uwhgi0cvG3tl4LmAkc1j9dpuwH9HN1ZkftbQ0k48Padr8EcqpMf92KJII2yxiM72Pn2tc-sQA_vvQi8DTqF_FUPMCbprChnwDcWp8SxGC8Id1t0Zn2IsE6CkzKpR2OpNRJ2LyjB6v00fTXu_n2J10wQHVbAmmH9Spo",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "xXW9xz-sFP8iXRbenP2htHOjmHfPQ7BpfdKYjpj0qJA",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"drupal relay post test 001 headers1231 ok\",\n    \"email\": \"jon_direct_088d@hotmail.gr\",\n    \"password\": \"something\",\n    \"created_at\": \"2018-02-19 21:30:53\",\n    \"updated_at\": \"2018-02-19 21:30:53\",\n    \"scope\": \"proedros\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "05b-D8-POST-PLACEHOLDER testhttp://ostdev.minedu.gov.gr/api/user copy copy copy",
+			"request": {
+				"url": {
+					"raw": "localhost/drupal8test/api/relay/post/5?_format=json",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"api",
+						"relay",
+						"post",
+						"5"
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization2",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjAzNjdhY2U5OTIzZjBlNWQ0OGExNTNjM2E2Nzc2ZDQwOTgwNmEwMmE1ZGIxNWJjNTRmMDZlMmI5YzE2MGRiYTU4YjVmZjMyMzNlZTdjZTEzIn0.eyJhdWQiOiIyIiwianRpIjoiMDM2N2FjZTk5MjNmMGU1ZDQ4YTE1M2MzYTY3NzZkNDA5ODA2YTAyYTVkYjE1YmM1NGYwNmUyYjljMTYwZGJhNThiNWZmMzIzM2VlN2NlMTMiLCJpYXQiOjE1MjA4NDQ4OTgsIm5iZiI6MTUyMDg0NDg5OCwiZXhwIjoxNTIwODQ1NDk4LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.pO8WiLnnB_vAjzfo-GowKLzLqCewLGMfVgDWwA23lrcVoGAaWRaz6Fv46PcZc7QPk-Pn03FoC2zPUvlWMN5MAQFEjscMYCgi597fhiGb_wEAhGcXI62SYpIFPk-CKL5UeSPp_yHVcwuYmisGZQMysFPElRvKdIW09VSewWyw8dJUSAqjd9XcenV7jSANOLTFyCSzqVOdPH31yAnUWpLx-6apttAuw0reChq8850z3-qQNteR16ZCjQeskO8Nn5JUUc3KNi4Rc_XRdfXx99HX3SeVLB7Cfbq3NQaJdahyLXCMd7t27Ga4dcgjAAmc89KhhdR5ByYnnuk0FrLQTctTeIrRoGZGd49qWOhZIgyvsskM2-U1dUT_N7s-X09udBAa02_aGUhZiWSedgCzyE_HiwWwwXO_eCkhbCV8GingE_pt7wFO65J_V0xGkkX-v8EKnIbStA5tPMlFIoqGuT_lgR4bcxczMrq1EvtjAVKIwjRlvzcgxlQL7Rz9yCefO4-lIk503uu5VuXb_KWfu7u949OnWRkxdpSY1PX8nzMmxj23Vz_72Y-wl7v_kg7afB1q444B7yYcuW7qAfscymGWyfP-QixTlg0fhguasFd4JRp7i3i1haHTLo1xU9dPFh7UqAivC_fv9vTPhB3daD_wzLdSN8_p0Noq1IcYEJnDphQ",
+						"description": ""
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "xXW9xz-sFP8iXRbenP2htHOjmHfPQ7BpfdKYjpj0qJA",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": 99991,\n  \"id\": 99991,\n  \"title\": \"99999999\",\n  \"body\": \"99999999999\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "D8-GET-NODEtest",
+			"request": {
+				"url": {
+					"raw": "localhost/drupal8test/node/1?_format=json",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"node",
+						"1"
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization2",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjAzNjdhY2U5OTIzZjBlNWQ0OGExNTNjM2E2Nzc2ZDQwOTgwNmEwMmE1ZGIxNWJjNTRmMDZlMmI5YzE2MGRiYTU4YjVmZjMyMzNlZTdjZTEzIn0.eyJhdWQiOiIyIiwianRpIjoiMDM2N2FjZTk5MjNmMGU1ZDQ4YTE1M2MzYTY3NzZkNDA5ODA2YTAyYTVkYjE1YmM1NGYwNmUyYjljMTYwZGJhNThiNWZmMzIzM2VlN2NlMTMiLCJpYXQiOjE1MjA4NDQ4OTgsIm5iZiI6MTUyMDg0NDg5OCwiZXhwIjoxNTIwODQ1NDk4LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.pO8WiLnnB_vAjzfo-GowKLzLqCewLGMfVgDWwA23lrcVoGAaWRaz6Fv46PcZc7QPk-Pn03FoC2zPUvlWMN5MAQFEjscMYCgi597fhiGb_wEAhGcXI62SYpIFPk-CKL5UeSPp_yHVcwuYmisGZQMysFPElRvKdIW09VSewWyw8dJUSAqjd9XcenV7jSANOLTFyCSzqVOdPH31yAnUWpLx-6apttAuw0reChq8850z3-qQNteR16ZCjQeskO8Nn5JUUc3KNi4Rc_XRdfXx99HX3SeVLB7Cfbq3NQaJdahyLXCMd7t27Ga4dcgjAAmc89KhhdR5ByYnnuk0FrLQTctTeIrRoGZGd49qWOhZIgyvsskM2-U1dUT_N7s-X09udBAa02_aGUhZiWSedgCzyE_HiwWwwXO_eCkhbCV8GingE_pt7wFO65J_V0xGkkX-v8EKnIbStA5tPMlFIoqGuT_lgR4bcxczMrq1EvtjAVKIwjRlvzcgxlQL7Rz9yCefO4-lIk503uu5VuXb_KWfu7u949OnWRkxdpSY1PX8nzMmxj23Vz_72Y-wl7v_kg7afB1q444B7yYcuW7qAfscymGWyfP-QixTlg0fhguasFd4JRp7i3i1haHTLo1xU9dPFh7UqAivC_fv9vTPhB3daD_wzLdSN8_p0Noq1IcYEJnDphQ",
+						"description": ""
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "xXW9xz-sFP8iXRbenP2htHOjmHfPQ7BpfdKYjpj0qJA",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": 99991,\n  \"id\": 99991,\n  \"title\": \"99999999\",\n  \"body\": \"99999999999\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "D8-POST2-NODEtest copy",
+			"request": {
+				"url": {
+					"raw": "localhost/drupal8test/entity/node?_format=json",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"entity",
+						"node"
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization2",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "xXW9xz-sFP8iXRbenP2htHOjmHfPQ7BpfdKYjpj0qJA",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"langcode\": [\n        {\n            \"value\": \"en\"\n        }\n    ],\n    \"type\": [\n        {\n            \"target_id\": \"article\",\n            \"target_type\": \"node_type\",\n            \"target_uuid\": \"ff9b4624-1224-49f6-be47-d19a22664f8e\"\n        }\n    ],\n    \"status\": [\n        {\n            \"value\": true\n        }\n    ],\n    \"title\": [\n        {\n            \"value\": \"Hello World333333333\"\n        }\n    ],\n    \"uid\": [\n        {\n            \"target_id\": 1,\n            \"target_type\": \"user\",\n            \"target_uuid\": \"6cc8408d-0d22-45a7-9e98-482dcb4c8d7f\",\n            \"url\": \"/drupal8test/user/1\"\n        }\n    ],\n\n    \"promote\": [\n        {\n            \"value\": true\n        }\n    ],\n    \"sticky\": [\n        {\n            \"value\": false\n        }\n    ],\n\n    \"default_langcode\": [\n        {\n            \"value\": true\n        }\n    ],\n    \"path\": [],\n    \"body\": [\n        {\n            \"value\": \"How are you?\",\n            \"format\": null,\n            \"summary\": null\n        }\n    ],\n    \"comment\": [\n        {\n            \"status\": 2,\n            \"cid\": 0,\n            \"last_comment_timestamp\": 0,\n            \"last_comment_name\": null,\n            \"last_comment_uid\": 0,\n            \"comment_count\": 0\n        }\n    ],\n    \"field_image\": [],\n    \"field_tags\": []\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "D8-POST3-RELAY-NODEtest copy copy",
+			"request": {
+				"url": {
+					"raw": "localhost/drupal8test/api/relay/post/10?_format=json",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"api",
+						"relay",
+						"post",
+						"10"
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization2",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "xXW9xz-sFP8iXRbenP2htHOjmHfPQ7BpfdKYjpj0qJA",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"langcode\": [\n        {\n            \"value\": \"en\"\n        }\n    ],\n    \"type\": [\n        {\n            \"target_id\": \"article\",\n            \"target_type\": \"node_type\",\n            \"target_uuid\": \"ff9b4624-1224-49f6-be47-d19a22664f8e\"\n        }\n    ],\n    \"status\": [\n        {\n            \"value\": true\n        }\n    ],\n    \"title\": [\n        {\n            \"value\": \"Hello World333333333\"\n        }\n    ],\n    \"uid\": [\n        {\n            \"target_id\": 1,\n            \"target_type\": \"user\",\n            \"target_uuid\": \"6cc8408d-0d22-45a7-9e98-482dcb4c8d7f\",\n            \"url\": \"/drupal8test/user/1\"\n        }\n    ],\n\n    \"promote\": [\n        {\n            \"value\": true\n        }\n    ],\n    \"sticky\": [\n        {\n            \"value\": false\n        }\n    ],\n\n    \"default_langcode\": [\n        {\n            \"value\": true\n        }\n    ],\n    \"path\": [],\n    \"body\": [\n        {\n            \"value\": \"How are you?\",\n            \"format\": null,\n            \"summary\": null\n        }\n    ],\n    \"comment\": [\n        {\n            \"status\": 2,\n            \"cid\": 0,\n            \"last_comment_timestamp\": 0,\n            \"last_comment_name\": null,\n            \"last_comment_uid\": 0,\n            \"comment_count\": 0\n        }\n    ],\n    \"field_image\": [],\n    \"field_tags\": []\n}"
 				},
 				"description": ""
 			},

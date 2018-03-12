@@ -206,7 +206,7 @@ class GuzzlenodeRestResource extends ResourceBase {
     protected function do_request($nid,$data=null,$method="GET")      {
         //PUT common code here 
         \Drupal::logger('guzzlenodeRest DO_REQUEST ok')->notice("ok $method nid=".$nid ." || DATA=".json_encode($data,true));  
-
+    $request_method=$method;
 
 
     //########## SECURITY CHECK Level #1 : user must have a general permission to view NODES 
@@ -402,7 +402,8 @@ class GuzzlenodeRestResource extends ResourceBase {
          // Perform GuzzleDrupalHttp request
          $check = new GuzzleDrupalHttp();
          // Function call to retrieve cities
-         $response = $check->performRequest($endpoint_url,$request_method,$raw_headers,$payload_data);
+         //$response = $check->performRequest($endpoint_url,$request_method,$raw_headers,$payload_data);
+         $response = $check->performRequest($endpoint_url,$method,$raw_headers,$payload_data);
          $contents = (string) $response->getBody();
          if($response->getStatusCode() == '200'){
              if($contents != ''){
