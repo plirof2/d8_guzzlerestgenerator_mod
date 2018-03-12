@@ -11,7 +11,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
  * Implements hook_rest_entity_form_alter(). ENABLE the 2 new guzzlenode fields 
  */
 function d8_guzzlenode_rest_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-
+    //ENABLE all our custom fileds.(we do that because this module add the fields to an already existing form -so /config/install/optional will NOT work)
     $fields_to_enable=array('field_guzzlenode_user_api_access',
                             'field_guzzlenode_role_api_access',
                             'field_guzzlenode_call_limit',
@@ -26,29 +26,15 @@ function d8_guzzlenode_rest_form_alter(&$form, \Drupal\Core\Form\FormStateInterf
           ->getStorage('entity_form_display')
           ->load('node.guzzle_rest.default')  //orig ->load('user.user.default')
           ->setComponent($field
-        /*    , [
-              'type' => 'string',
+            /*, [
+              //'type' => 'string',
               'label' => 'above',
-              'settings' => ['link_to_entity' => 'false'],
-          ]*/
+              //'settings' => ['link_to_entity' => 'false'],
+          ]
+          */
         )->save(); 
     }//END of foreach ($fields_to_enable as $field) {
 
-/*
-    \Drupal::entityTypeManager()
-      ->getStorage('entity_form_display')
-      ->load('node.guzzle_rest.default')  //orig ->load('user.user.default')
-      ->setComponent('field_guzzlenode_user_api_access'
-
-    )->save(); 
-
-    \Drupal::entityTypeManager()
-      ->getStorage('entity_form_display')
-      ->load('node.guzzle_rest.default')  //orig ->load('user.user.default')
-      ->setComponent('field_guzzlenode_role_api_access'
-
-    )->save();       
-    */  
 //      \Drupal::logger('DEBUG d8_guzzlenode_rest')->notice("jon CUSTOM entity_form_display   "); //DEBUG   
 
 } // END of function d8_guzzlenode_rest_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
