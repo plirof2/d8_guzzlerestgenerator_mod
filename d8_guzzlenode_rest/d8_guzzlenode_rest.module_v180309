@@ -12,43 +12,28 @@ use Drupal\Core\Routing\RouteMatchInterface;
  */
 function d8_guzzlenode_rest_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
 
-    $fields_to_enable=array('field_guzzlenode_user_api_access',
-                            'field_guzzlenode_role_api_access',
-                            'field_guzzlenode_call_limit',
-                            'field_gnode_allow_arg_fwd',
-                            'field_gnode_allow_head_fwd',
-                            'field_gnode_allow_param_fwd',
-                            'field_gnode_allow_payload_fwd'
-    );
-
-    foreach ($fields_to_enable as $field) {
-        \Drupal::entityTypeManager()
-          ->getStorage('entity_form_display')
-          ->load('node.guzzle_rest.default')  //orig ->load('user.user.default')
-          ->setComponent($field
-        /*    , [
-              'type' => 'string',
-              'label' => 'above',
-              'settings' => ['link_to_entity' => 'false'],
-          ]*/
-        )->save(); 
-    }//END of foreach ($fields_to_enable as $field) {
-
-/*
     \Drupal::entityTypeManager()
       ->getStorage('entity_form_display')
       ->load('node.guzzle_rest.default')  //orig ->load('user.user.default')
       ->setComponent('field_guzzlenode_user_api_access'
-
+    /*    , [
+          'type' => 'string',
+          'label' => 'above',
+          'settings' => ['link_to_entity' => 'false'],
+      ]*/
     )->save(); 
 
     \Drupal::entityTypeManager()
       ->getStorage('entity_form_display')
       ->load('node.guzzle_rest.default')  //orig ->load('user.user.default')
       ->setComponent('field_guzzlenode_role_api_access'
-
+    /*    , [
+          'type' => 'string',
+          'label' => 'above',
+          'settings' => ['link_to_entity' => 'false'],
+      ]*/
     )->save();       
-    */  
+      
 //      \Drupal::logger('DEBUG d8_guzzlenode_rest')->notice("jon CUSTOM entity_form_display   "); //DEBUG   
 
 } // END of function d8_guzzlenode_rest_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {

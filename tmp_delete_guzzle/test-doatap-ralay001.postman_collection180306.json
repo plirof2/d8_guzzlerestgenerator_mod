@@ -1,0 +1,285 @@
+{
+	"variables": [],
+	"info": {
+		"name": "test-doatap-ralay001",
+		"_postman_id": "4737417f-ea7f-962b-af4a-857d58b89740",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DOATAP relay GET localhost/drupal8test/api/relay/4?_format=json",
+			"request": {
+				"url": {
+					"raw": "localhost/drupal8test/api/relay/4?_format=json&param_name[1]=hello&param_value[1]=55555555&param_name[2]=world&param_value[2]=44444",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"api",
+						"relay",
+						"4"
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "param_name[1]",
+							"value": "hello",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "param_value[1]",
+							"value": "55555555",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "param_name[2]",
+							"value": "world",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "param_value[2]",
+							"value": "44444",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					},
+					{
+						"key": "Authorization2",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFiMjZkODEwYjA5MzExNzY4NjA1ZDc2MTA5ZDBjODIyYjE2YWViYTAzNTdmZThmOGZjYTE1ZDhmZDE5NTBlMmI3ZGMyNGY4ZjAyMTdjMDExIn0.eyJhdWQiOiIyIiwianRpIjoiYWIyNmQ4MTBiMDkzMTE3Njg2MDVkNzYxMDlkMGM4MjJiMTZhZWJhMDM1N2ZlOGY4ZmNhMTVkOGZkMTk1MGUyYjdkYzI0ZjhmMDIxN2MwMTEiLCJpYXQiOjE1MjA1ODk3MjgsIm5iZiI6MTUyMDU4OTcyOCwiZXhwIjoxNTIwNTkwMzI4LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.Pjohml4DrI7Xq1tlG0GQZMnpsIiywJXacS__fcamkd2ujCIpyKeqJZq-euCkevIh_Z28eZGua2Qas3Y2iPxueoR7GW1QMLZ7FvyfXqN2os36M08EsMynnBEEcLwjcvjOOnV59DDq0cGdxAPpkKijOqMDJC7gEkk3TxGOVD4-U48c8daEVuM-92QF5Ck8bdOJnoQFEQssRy1zLJYiSh0D7oIC4jOR45M4nRoMTSl1uD-LD_V7kxqM4Jlqrri9IfmJ3FRv_7wdtmQvNH-_ezdmRgNCDZITZa3ktD4UYx__ol38c-97sbi3AxWW-aaHTSOyzTGSkWv08IUOPTRY-8KA-BZax9QRyxFlgpYGDitNaA5nGTbpCFcaJbwrEcfJPw8mpKvtEgBgRdYSEZvVqF3k_X9Eyw_rBdH5B65JOcKv3YjDuJULzMDna4Thq2t5qOebBI6gq945ryWUQZzUgdrlHcWa1npY7arDtQFHRbXT8rusZ7KMl4n2XUn6SQJykbvxTSaV5j1d7K2U8Uvr-ezQAZKDXQWJWC99nx4Re5oL5Ah40AGwev7GQsL5Yvo7owu_AxWENFgufMPw7QQbNOltU_rQ0hpQdiPyIDUKwPs2ebto5IIR-T8wJaEPiKVAoeHnxrn3PrlZEs2ApD2i3mdV_JagtG6x5vz-Me4lewms2D4",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DRUPAL TOKEN DOATAP relay GET localhost/drupal8test/api/relay/4?_format=json copy",
+			"request": {
+				"url": "http://localhost/drupal8test/session/token",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DOATAP relayPOST localhost/drupal8test/api/relay/4?_format=json copy",
+			"request": {
+				"url": {
+					"raw": "localhost/drupal8test/api/relay/4?_format=json&param_name[1]=hello&param_value[1]=55555555&param_name[2]=world&param_value[2]=44444",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"api",
+						"relay",
+						"4"
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "param_name[1]",
+							"value": "hello",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "param_value[1]",
+							"value": "55555555",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "param_name[2]",
+							"value": "world",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "param_value[2]",
+							"value": "44444",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Armageddon 3\",\n    \"email\": \"aaaa@hotmail.gr\",\n    \"password\": \"something2\",\n    \"created_at\": \"2018-02-19 21:30:53\",\n    \"updated_at\": \"2018-02-19 21:30:53\",\n    \"scope\": \"proedros\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://ostdev.minedu.gov.gr/api/login",
+			"request": {
+				"url": "http://ostdev.minedu.gov.gr/api/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " { \"email\":\"thomasdion@hotmail.gr\", \"password\":\"1981\" }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "doatap_LOGINhttp://ostdev.minedu.gov.gr/api/login",
+			"request": {
+				"url": {
+					"raw": "localhost/drupal8test/api/relay/post/5?_format=json",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"api",
+						"relay",
+						"post",
+						"5"
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "GTjKgMA1tydMu_uiYZD8NDIISANFiXNVJOECH0AJJv4",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					},
+					{
+						"key": "Authorization2",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFiMjZkODEwYjA5MzExNzY4NjA1ZDc2MTA5ZDBjODIyYjE2YWViYTAzNTdmZThmOGZjYTE1ZDhmZDE5NTBlMmI3ZGMyNGY4ZjAyMTdjMDExIn0.eyJhdWQiOiIyIiwianRpIjoiYWIyNmQ4MTBiMDkzMTE3Njg2MDVkNzYxMDlkMGM4MjJiMTZhZWJhMDM1N2ZlOGY4ZmNhMTVkOGZkMTk1MGUyYjdkYzI0ZjhmMDIxN2MwMTEiLCJpYXQiOjE1MjA1ODk3MjgsIm5iZiI6MTUyMDU4OTcyOCwiZXhwIjoxNTIwNTkwMzI4LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.Pjohml4DrI7Xq1tlG0GQZMnpsIiywJXacS__fcamkd2ujCIpyKeqJZq-euCkevIh_Z28eZGua2Qas3Y2iPxueoR7GW1QMLZ7FvyfXqN2os36M08EsMynnBEEcLwjcvjOOnV59DDq0cGdxAPpkKijOqMDJC7gEkk3TxGOVD4-U48c8daEVuM-92QF5Ck8bdOJnoQFEQssRy1zLJYiSh0D7oIC4jOR45M4nRoMTSl1uD-LD_V7kxqM4Jlqrri9IfmJ3FRv_7wdtmQvNH-_ezdmRgNCDZITZa3ktD4UYx__ol38c-97sbi3AxWW-aaHTSOyzTGSkWv08IUOPTRY-8KA-BZax9QRyxFlgpYGDitNaA5nGTbpCFcaJbwrEcfJPw8mpKvtEgBgRdYSEZvVqF3k_X9Eyw_rBdH5B65JOcKv3YjDuJULzMDna4Thq2t5qOebBI6gq945ryWUQZzUgdrlHcWa1npY7arDtQFHRbXT8rusZ7KMl4n2XUn6SQJykbvxTSaV5j1d7K2U8Uvr-ezQAZKDXQWJWC99nx4Re5oL5Ah40AGwev7GQsL5Yvo7owu_AxWENFgufMPw7QQbNOltU_rQ0hpQdiPyIDUKwPs2ebto5IIR-T8wJaEPiKVAoeHnxrn3PrlZEs2ApD2i3mdV_JagtG6x5vz-Me4lewms2D4",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Superman Vs Zorro\",\n    \"email\": \"arnold4@hotmail.gr\",\n    \"password\": \"something2\",\n    \"created_at\": \"2018-02-19 21:30:53\",\n    \"updated_at\": \"2018-02-19 21:30:53\",\n    \"scope\": \"proedros\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST TEST jsontypecode",
+			"request": {
+				"url": {
+					"raw": "localhost/drupal8test/api/relay/post/5?_format=json",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"drupal8test",
+						"api",
+						"relay",
+						"post",
+						"5"
+					],
+					"query": [
+						{
+							"key": "_format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "X-CSRF-Token",
+						"value": "GTjKgMA1tydMu_uiYZD8NDIISANFiXNVJOECH0AJJv4",
+						"description": ""
+					},
+					{
+						"key": "Authorization2",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFiMjZkODEwYjA5MzExNzY4NjA1ZDc2MTA5ZDBjODIyYjE2YWViYTAzNTdmZThmOGZjYTE1ZDhmZDE5NTBlMmI3ZGMyNGY4ZjAyMTdjMDExIn0.eyJhdWQiOiIyIiwianRpIjoiYWIyNmQ4MTBiMDkzMTE3Njg2MDVkNzYxMDlkMGM4MjJiMTZhZWJhMDM1N2ZlOGY4ZmNhMTVkOGZkMTk1MGUyYjdkYzI0ZjhmMDIxN2MwMTEiLCJpYXQiOjE1MjA1ODk3MjgsIm5iZiI6MTUyMDU4OTcyOCwiZXhwIjoxNTIwNTkwMzI4LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.Pjohml4DrI7Xq1tlG0GQZMnpsIiywJXacS__fcamkd2ujCIpyKeqJZq-euCkevIh_Z28eZGua2Qas3Y2iPxueoR7GW1QMLZ7FvyfXqN2os36M08EsMynnBEEcLwjcvjOOnV59DDq0cGdxAPpkKijOqMDJC7gEkk3TxGOVD4-U48c8daEVuM-92QF5Ck8bdOJnoQFEQssRy1zLJYiSh0D7oIC4jOR45M4nRoMTSl1uD-LD_V7kxqM4Jlqrri9IfmJ3FRv_7wdtmQvNH-_ezdmRgNCDZITZa3ktD4UYx__ol38c-97sbi3AxWW-aaHTSOyzTGSkWv08IUOPTRY-8KA-BZax9QRyxFlgpYGDitNaA5nGTbpCFcaJbwrEcfJPw8mpKvtEgBgRdYSEZvVqF3k_X9Eyw_rBdH5B65JOcKv3YjDuJULzMDna4Thq2t5qOebBI6gq945ryWUQZzUgdrlHcWa1npY7arDtQFHRbXT8rusZ7KMl4n2XUn6SQJykbvxTSaV5j1d7K2U8Uvr-ezQAZKDXQWJWC99nx4Re5oL5Ah40AGwev7GQsL5Yvo7owu_AxWENFgufMPw7QQbNOltU_rQ0hpQdiPyIDUKwPs2ebto5IIR-T8wJaEPiKVAoeHnxrn3PrlZEs2ApD2i3mdV_JagtG6x5vz-Me4lewms2D4",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Superman Vs Zorro\",\n    \"email\": \"arnold4@hotmail.gr\",\n    \"password\": \"something2\",\n    \"created_at\": \"2018-02-19 21:30:53\",\n    \"updated_at\": \"2018-02-19 21:30:53\",\n    \"scope\": \"proedros\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
